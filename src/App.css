@@ -1,0 +1,38 @@
+
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(12px + 1vmin);
+    color: black;
+    float: right;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.btns {
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+textarea {
+  margin: 1rem 0 !important;
+  height: 90vh;
+  width: 100%;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: .2rem;
+    margin: 0.3rem;
+}
+
