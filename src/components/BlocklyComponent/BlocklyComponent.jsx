@@ -8,49 +8,49 @@ import 'blockly/blocks';
 Blockly.setLocale(locale);
 
 
-function BlocklyComponent(props) {
-    const blocklyDiv = useRef(null);
-    const toolbox = useRef(null);
-    var workspace = null;
 
-    useEffect(() => {
-        const { initialXml, children, ...rest } = props;
-        workspace = Blockly.inject(
-            blocklyDiv.current,
-            {   ...rest,
-                toolbox: toolbox.current,
-                
+
+class BlocklyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.blocklyDiv = React.createRef();
+        this.toolbox = React.createRef();
+    }
+
+    componentDidMount() {
+        const { initialXml, children, ...rest } = this.props;
+        this.primaryWorkspace = Blockly.inject(
+            this.blocklyDiv.current,
+            {
+                toolbox: this.toolbox.current,
+                ...rest
             },
         );
 
         if (initialXml) {
-            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), workspace);
+            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), this.primaryWorkspace);
         }
-        console.log(workspace)
-    },[])
-
-
-    function getWorkspace() {
-        return workspace;
     }
 
-    function setXml(xml){
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+    get workspace() {
+        return this.primaryWorkspace;
     }
 
+    setXml(xml) {
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.primaryWorkspace);
+    }
 
-    const { children } = props;    
-    return (
-    <>
-    <React.Fragment>
-            <div ref={blocklyDiv} id="blocklyDiv" />
-            <xml xmlns="https://developers.google.com/blockly/xml" is="blockly" style={{ display: 'none' }} ref={toolbox}>
+    render() {
+        const { children } = this.props;
+
+        return <React.Fragment>
+            <div ref={this.blocklyDiv} id="blocklyDiv" />
+            <xml xmlns="https://developers.google.com/blockly/xml" is="blockly" style={{ display: 'none' }} ref={this.toolbox}>
                 {children}
             </xml>
-        </React.Fragment>
-        </>
-    );
-    
+        </React.Fragment>;
+    }
 }
 
 export default BlocklyComponent;
+
