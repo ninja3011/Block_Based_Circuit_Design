@@ -1,10 +1,6 @@
 import * as Blockly from 'blockly/core';
 import tlVerilogGenerator from './tl_verilog'
 
-tlVerilogGenerator.init = function(workspace) {
-  console.log("tl verilog generator defined");
-};
-
 
 
 tlVerilogGenerator['tlv_version'] = function(block) {
@@ -46,18 +42,4 @@ tlVerilogGenerator['tlv_version'] = function(block) {
     var code = '\\SV_plus\n'+ statements_sv;
     return code;
   };
-  
-
-tlVerilogGenerator.scrub_ = function(block, code, opt_thisOnly) {
-    const nextBlock =
-        block.nextConnection && block.nextConnection.targetBlock();
-    let nextCode = '';
-    if (nextBlock) {
-        nextCode =
-            opt_thisOnly ? '' : '\n' + tlVerilogGenerator.blockToCode(nextBlock);
-    }
-    return code +  nextCode;
-  };
-  
-  
   

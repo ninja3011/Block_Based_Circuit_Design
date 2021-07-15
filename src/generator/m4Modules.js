@@ -41,13 +41,3 @@ tlVerilogGenerator['m4asm'] = function(block) {
   };
   
   
-  tlVerilogGenerator.scrub_ = function(block, code, opt_thisOnly) {
-    const nextBlock =
-        block.nextConnection && block.nextConnection.targetBlock();
-    let nextCode = '';
-    if (nextBlock) {
-        nextCode =
-            opt_thisOnly ? '' : '\n' + tlVerilogGenerator.blockToCode(nextBlock);
-    }
-    return code +  nextCode;
-  };

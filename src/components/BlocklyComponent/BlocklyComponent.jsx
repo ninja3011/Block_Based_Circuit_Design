@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './BlocklyComponent.css';
-
+import './index.js'
 import Blockly from 'blockly/core';
 import locale from 'blockly/msg/en';
 import 'blockly/blocks';
@@ -39,6 +39,8 @@ class BlocklyComponent extends React.Component {
     setXml(xml) {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.primaryWorkspace);
     }
+
+ 
 
     render() {
         const { children } = this.props;

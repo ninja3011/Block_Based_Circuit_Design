@@ -7,22 +7,50 @@ import BlocklyComponent, {
   Value,
   Field,
   Shadow,
+  Category
 } from "./components/BlocklyComponent";
-import Blockly from "blockly";
+import Blockly, { CONNECTING_SNAP_RADIUS } from "blockly";
 
 import "./App.css";
 
 import tlVerilogGenerator from "./generator/tl_verilog.js";
 
+import "./blocks/Components";
+import "./blocks/Expressions";
 import "./blocks/fileStructure";
 import "./blocks/m4Modules";
+import "./blocks/Printing";
+import "./blocks/Procedures";
+import "./blocks/Scopes";
+import "./blocks/Sequential";
+import "./blocks/Signals";
+import "./blocks/Ternary";
+import "./blocks/MultiPurpose";
 
+
+import "./generator/Components";
+import "./generator/Expressions";
 import "./generator/fileStructure";
 import "./generator/m4Modules";
+import "./generator/Printing";
+import "./generator/Procedures";
+import "./generator/Scopes";
+import "./generator/Sequential";
+import "./generator/Signals";
+import "./generator/Ternary";
+import "./generator/MultiPurpose";
+
+
+
+
+
+
+
 
 function Main() {
   const [value, setValue] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
+  const [uploadFile, setUploadFile] = useState(false)
   const simpleWorkspace = createRef();
 
   const fileInput = useRef(null);
@@ -64,22 +92,62 @@ function Main() {
     console.log("pretty text:", domToPretty);
   };
 
-  const handleFileUpload = (event) => {
-    console.log(event);
-    const reader = new FileReader();
-    reader.readAsText(event.target.files[0]);
-    reader.onload = async (event) => {
-      const text = event.target.result;
-      console.log(text);
+  // const handleFileUpload = (event) => {
+  //   var file = fileInput.files[0];
+  //      var textType = /text.*/;
+   
+  //      if (file.type.match(textType)) {
+  //          var reader = new FileReader()
 
-      var program = text;
-      simpleWorkspace.current.workspace.clear();
-      var textToDom = Blockly.Xml.textToDom(program);
-      Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-      setValue(textToDom);
-      console.log("textToDom:", textToDom);
-    };
-    console.log("handleFileUpload", event.target.files[0]);
+  //         reader.onload = function(e) {
+  //           const text = reader.result;
+  //           console.log(text);
+
+  //         var program = text;
+  //         simpleWorkspace.current.workspace.clear();
+  //         var textToDom = Blockly.Xml.textToDom(program);
+  //         Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
+  //         setValue(textToDom);
+  //         console.log("textToDom:", textToDom);
+  //   };
+  // }
+  //   console.log("handleFileUpload", event.target.files[0]);
+  // };
+
+
+  // var upload = document.getElementById('fileInput')
+  // console.log(upload)
+  // if(upload){
+  //   upload.addEventListener('change', () => {
+
+  // const addToWorkspace = (program, simpleWorkspace) => {
+  //   console.log('program: ', program, simpleWorkspace.current)
+  //   var textToDom = Blockly.Xml.textToDom(program);
+  //   simpleWorkspace.current.workspace.clear();
+  //   Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
+  // }
+
+  const  handleFileUpload = () => {
+  var upload = document.getElementById('fileInput')
+  var files = upload.files;
+      
+      if (files.length == 0) return;
+    
+      const file = files[0];
+    
+      let reader = new FileReader();
+      console.log(upload, file)
+      reader.onload = (e) => {
+          const file = e.target.result;
+          var program = file;
+          console.log(simpleWorkspace.current.workspace);
+          console.log('program: ', program, simpleWorkspace.current.workspace)
+          setValue(program);
+      };
+    
+      reader.onerror = (e) => alert(e.target.error.name);
+    
+      reader.readAsText(file);
   };
 
   const restoreWorkspace = () => {
@@ -98,6 +166,7 @@ function Main() {
     var textToDom = Blockly.Xml.textToDom(program);
     Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
     setValue(textToDom);
+    document.getElementById('textarea').value=program;
     console.log("textToDom:", textToDom);
   };
 
@@ -105,11 +174,26 @@ function Main() {
     setValue(event.target.value);
   };
 
+  const downloadXmlFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob([value], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = prompt('file name?');
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  }
+
+  const pipesignal_callback = () => {
+    console.log("clicked")
+  };
+
+  
+
   return (
     <div>
       <header className="App-header">
         <div>
-          <div>
+          <div id="buttons_xml">
             <Button variant="success" size="sm" onClick={generateCode}>
               Convert to TLV
             </Button>
@@ -124,20 +208,7 @@ function Main() {
               Save To Storage
             </Button>
 
-            <input
-              ref={fileInput}
-              onChange={handleFileUpload}
-              type="file"
-              style={{ display: "none" }}
-            />
-            {console.log(fileInput)}
-            <Button
-              variant="success"
-              size="sm"
-              onClick={() => fileInput.click()}
-            >
-              Upload File
-            </Button>
+
             <Button
               variant="success"
               size="sm"
@@ -152,6 +223,28 @@ function Main() {
             >
               Recover From Code
             </Button>
+
+
+            {console.log(fileInput)}
+            <Button
+              variant="success"
+              size="sm"
+              onClick={() => downloadXmlFile()}
+            >
+             Download
+            </Button>
+            <Button
+              variant="success"
+              size="sm"
+              onClick={() => document.getElementById("fileInput").click()}
+            >
+              Upload File
+            </Button>
+            <input type="file" 
+                   style={{visibility:"hidden"}}
+                   id="fileInput"
+                   onChange={(event) => handleFileUpload()}
+            ></input>
           </div>
           <textarea id="textarea" value={value} onChange={manualtext} />
         </div>
@@ -169,96 +262,112 @@ function Main() {
           wheel: true,
         }}
         initialXml={`
-          <block type="text"></block>
+        <xml xmlns="https://developers.google.com/blockly/xml">
+        <block type="tlv_version" id="i:~1Q]=gvSsiYTmS#{up" x="187" y="59">
+          <next>
+            <block type="sv" id="/|dHN{#pzZDmwGVlZ\`B*">
+              <statement name="NAME">
+                <block type="m4_makerchip_module" id="G?]7\`vFN-../Ls7tGwHj"></block>
+              </statement>
+              <next>
+                <block type="tlv" id="X-Z5@s%;fL^z?g0BCtNP">
+                  <next>
+                    <block type="sv" id="5zFC9udPQJSZocZ\/I)\[s">
+                      <statement name="NAME">
+                        <block type="endmodule" id="D\[3;mCF|Cx;DpAKz4SfM"></block>
+                      </statement>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </xml> 
 
       `}
       >
-        <category name="File Structure" colour="199">
+        <Category name="File Structure" colour="199">
           <Block type="tlv" />
           <Block type="tlv_version" />
           <Block type="sv" />
           <Block type="sv_plus" />
           <Block type="endmodule" />
           <Block type="include" />
-        </category>
+        </Category>
 
-        <category name="Text" colour="100">
-          <Block type="text" />
+        <Category name="Multi Purpose" colour="100">
+          <Block type="part_general" />
           <Block type="TLV_CODE_BLOCK">
-            <field name="FIELDNAME"></field>
+            <Field name="FIELDNAME"></Field>
           </Block>
-        </category>
+        </Category>
 
-        <category name="Logic" colour="290">
-          <category name="Expressions">
+        <Category name="Logic" colour="290">
+          <Category name="Expressions">
             <Block type="expression" />
-            <Block type="expression_constant" />
-          </category>
-          <category name="Sequential">
+          </Category>
+          <Category name="Sequential">
             <Block type="always_ff" />
-          </category>
-          <category name="parts">
-            <Block type="math_number" />
+          </Category>
+          <Category name="Components">
             <Block type="signal" />
             <Block type="logical_operator" />
             <Block type="comparison_operator" />
             <Block type="arithmetic_operator" />
             <Block type="semicolon" />
-            <Block type="part_general" />
+            <Block type="retiming" />
             <Block type="dynamic_dropdown" />
-          </category>
+          </Category>
 
-          <category name="ternary">
+          <Category name="ternary">
             <Block type="ternary_shell" />
             <Block type="ternary_fields" />
-          </category>
-        </category>
+          </Category>
+        </Category>
 
-        <category name="TLV" colour="160">
-          <category name="Scopes">
+        <Category name="TLV" colour="160">
+          <Category name="Scopes">
             <Block type="pipeline" />
             <Block type="stage_number" />
             <Block type="when" />
             <Block type="hierarchy" />
-          </category>
-        </category>
+          </Category>
+        </Category>
 
-        <category name="m4 Modules" colour="20">
+        <Category name="m4 Modules" colour="20">
           <Block type="m4_makerchip_module" />
           <Block type="m4plus" />
           <Block type="m4asm" />
           <Block type="m4_general" />
 
           <Block type="m4_include_lib" />
-        </category>
+        </Category>
 
-        <category name="Printing" colour="300">
+        <Category name="Printing" colour="300">
           <Block type="display" />
-        </category>
+        </Category>
 
-        <category name="Signals" colour="200">
-          <category name="Signals" custom="VARIABLE" colour="200">
+        <Category name="Signals" colour="200">
+          <Category name="Signals" custom="VARIABLE" colour="200">
             <Block type="variables_get" />
             <Block type="variables_set" />
-          </category>
-          <category name="PipeSignals" custom="PIPESIGNAL" colour="200">
-            <button text="A button" callbackKey="myFirstButtonPressed">
-              {" "}
-            </button>
+          </Category>
+          <Category name="PipeSignals"colour="200">
+            <button text="A button" callbackKey="myFirstButtonPressed"></button>
+            
+          </Category>
+          <Category name="Signals" custom="VARIABLE" colour="200">
             <Block type="variables_get" />
             <Block type="variables_set" />
-          </category>
-          <category name="Signals" custom="VARIABLE" colour="200">
+          </Category>
+          <Category name="Signals" custom="VARIABLE" colour="200">
             <Block type="variables_get" />
             <Block type="variables_set" />
-          </category>
-          <category name="Signals" custom="VARIABLE" colour="200">
-            <Block type="variables_get" />
-            <Block type="variables_set" />
-          </category>
-        </category>
+          </Category>
+        </Category>
 
-        <category name="Functions" custom="PROCEDURE" colour="134"></category>
+        <Category name="Functions" custom="PROCEDURE" colour="134"></Category>
       </BlocklyComponent>
     </div>
   );
