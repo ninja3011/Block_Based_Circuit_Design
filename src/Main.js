@@ -301,6 +301,8 @@ function Main() {
           <Block type="TLV_CODE_BLOCK">
             <Field name="FIELDNAME"></Field>
           </Block>
+          <Block type="parenthesis"/>
+          <Block type="semicolon" />
         </Category>
 
         <Category name="Logic" colour="290">
@@ -315,9 +317,8 @@ function Main() {
             <Block type="logical_operator" />
             <Block type="comparison_operator" />
             <Block type="arithmetic_operator" />
-            <Block type="semicolon" />
             <Block type="retiming" />
-            <Block type="dynamic_dropdown" />
+            {/* <Block type="dynamic_dropdown" /> */}
           </Category>
 
           <Category name="ternary">

@@ -7,9 +7,9 @@ tlVerilogGenerator['signal'] = function(block) {
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var dropdown_type = block.getFieldValue('type');
     var text_signal = block.getFieldValue('signal');
-    var value_signal = tlVerilogGenerator.valueToCode(block, 'NAME',tlVerilogGenerator.PRECEDENCE);
+   
     // TODO: Assemble JavaScript into code variable.
-    var code = value_retiming+ dropdown_type +text_signal+ value_signal;
+    var code = value_retiming+ dropdown_type +text_signal;
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
@@ -95,4 +95,12 @@ tlVerilogGenerator['part_general'] = function(block) {
     var code = text_name+value_general;
       // TODO: Change ORDER_NONE to the correct strength.
     return [code, tlVerilogGenerator.PRECEDENCE];
+  };
+
+  tlVerilogGenerator['parenthesis'] = function(block) {
+    var value_name = tlVerilogGenerator.valueToCode(block, 'NAME', tlVerilogGenerator.PRECEDENCE);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '('+ value_name+') '
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code,tlVerilogGenerator.PRECEDENCE];
   };

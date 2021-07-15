@@ -3,7 +3,7 @@ import * as Blockly from "blockly/core";
 
 var signal_block = {
   type: "signal",
-  message0: "%1 %2 %3 %4",
+  message0: "%1 %2 %3",
   args0: [
     {
       type: "input_value",
@@ -24,11 +24,7 @@ var signal_block = {
       type: "field_input",
       name: "signal",
       text: "signal",
-    },
-    {
-      type: "input_value",
-      name: "NAME",
-    },
+    }
   ],
   inputsInline: true,
   output: null,
@@ -298,5 +294,29 @@ Blockly.Extensions.register("retiming_func", function () {
 Blockly.Blocks["retiming"] = {
   init: function () {
     this.jsonInit(retiming_block);
+  },
+};
+
+
+var parenthesis_block = 
+{
+  "type": "parenthesis",
+  "message0": "( %1 )",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME"
+    }
+  ],
+  "inputsInline": true,
+  "output": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+};
+
+Blockly.Blocks["parenthesis"] = {
+  init: function () {
+    this.jsonInit(parenthesis_block);
   },
 };
