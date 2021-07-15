@@ -146,6 +146,7 @@ Blockly.Blocks['variables_get'] = {
   
 };
 
+
 var var_signal_set_block =
 
 
@@ -202,3 +203,167 @@ Blockly.Blocks['variables_set'] = {
   }
   
 };
+
+var pipesignal_block = 
+{
+    "type": "pipesignal",
+    "message0": "%1 $ %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "pipesignal",
+        "variable": "pipesignal"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": 300,
+    "tooltip": "",
+    "helpUrl": ""
+  };
+
+  Blockly.Blocks['pipesignal'] = {
+    init: function() {
+      this.jsonInit(pipesignal_block);
+    }
+    
+  };
+
+  var statesignal_block =
+  {
+    "type": "statesignal",
+    "message0": "%1 $ %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "statesignal",
+        "variable": "StateSignal"
+      }
+    ],
+    "output": null,
+    "colour": 210,
+    "tooltip": "",
+    "helpUrl": ""
+  };
+
+  Blockly.Blocks['statesignal'] = {
+    init: function() {
+      this.jsonInit(statesignal_block);
+    }
+  };
+
+var assignedsignal_block = 
+  {
+    "type": "assignedsignal",
+    "message0": "%1 $$ %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "assignedsignal",
+        "variable": "assigned_signal"
+      }
+    ],
+    "output": null,
+    "colour": 135,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+
+  Blockly.Blocks['assignedsignal'] = {
+    init: function() {
+      this.jsonInit(assignedsignal_block);
+    }
+  };
+
+var assignedstatesignal_block = 
+  {
+    "type": "assignedstatesignal",
+    "message0": "%1 $$ %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "assignedstatesignal",
+        "variable": "AssignedStateSignal"
+      }
+    ],
+    "output": null,
+    "colour": 195,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+
+  Blockly.Blocks['assignedstatesignal'] = {
+    init: function() {
+      this.jsonInit(assignedstatesignal_block);
+    }
+  };
+
+  var svsignal_block =
+  {
+    "type": "svsignal",
+    "message0": "%1 * %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "svsignal",
+        "variable": "SV_signal"
+      }
+    ],
+    "output": null,
+    "colour": 240,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+
+  Blockly.Blocks['svsignal'] = {
+    init: function() {
+      this.jsonInit(svsignal_block);
+    }
+  };
+
+  var svtype_block = 
+  {
+    "type": "svtype",
+    "message0": "%1 ** %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "retiming"
+      },
+      {
+        "type": "field_variable",
+        "name": "svtype",
+        "variable": "SV_type"
+      }
+    ],
+    "output": null,
+    "colour": 75,
+    "tooltip": "",
+    "helpUrl": ""
+  };
+
+  Blockly.Blocks['svtype'] = {
+    init: function() {
+      this.jsonInit(svtype_block);
+    }
+  };

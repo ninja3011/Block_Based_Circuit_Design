@@ -349,23 +349,31 @@ function Main() {
         </Category>
 
         <Category name="Signals" colour="200">
-          <Category name="Signals" custom="VARIABLE" colour="200">
+          <Category name="Signal Generator" custom="VARIABLE">
             <Block type="variables_get" />
             <Block type="variables_set" />
           </Category>
-          <Category name="PipeSignals"colour="200">
-            <button text="A button" callbackKey="myFirstButtonPressed"></button>
-            
+
+          <Category name="$pipesignals">
+            <Block type="pipesignal" />
           </Category>
-          <Category name="Signals" custom="VARIABLE" colour="200">
-            <Block type="variables_get" />
-            <Block type="variables_set" />
+          <Category name="$StateSignals">
+            <Block type="statesignal" />
           </Category>
-          <Category name="Signals" custom="VARIABLE" colour="200">
-            <Block type="variables_get" />
-            <Block type="variables_set" />
+          <Category name="$$assigned_signals">
+            <Block type="assignedsignal" />
           </Category>
-        </Category>
+          <Category name="$$AssignedStateSignals">
+            <Block type="assignedstatesignal" />
+          </Category>
+          <Category name="*SV_signals">
+            <Block type="svsignal" />
+          </Category>
+          <Category name="**SV_types">
+            <Block type="svtype" />
+          </Category>     
+          </Category>
+        
 
         <Category name="Functions" custom="PROCEDURE" colour="134"></Category>
       </BlocklyComponent>
