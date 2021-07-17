@@ -1,7 +1,11 @@
+// Code to manage all the components
+
+// Importing react functionalities
 import React, { useRef, useEffect, useState } from "react";
 import { createRef } from "react";
 import { Button } from "react-bootstrap";
 
+// Importing Blockly-Div Component
 import BlocklyComponent, {
   Block,
   Value,
@@ -9,12 +13,17 @@ import BlocklyComponent, {
   Shadow,
   Category
 } from "./components/BlocklyComponent";
+
+// Run npm --save install blockly
 import Blockly, { CONNECTING_SNAP_RADIUS } from "blockly";
 
+// Stylings for panel
 import "./App.css";
 
+// Importing the custom generator
 import tlVerilogGenerator from "./generator/tl_verilog.js";
 
+// Importing all block definitions
 import "./blocks/Components";
 import "./blocks/Expressions";
 import "./blocks/fileStructure";
@@ -27,7 +36,7 @@ import "./blocks/Signals";
 import "./blocks/Ternary";
 import "./blocks/MultiPurpose";
 
-
+// Importing all the block code generators
 import "./generator/Components";
 import "./generator/Expressions";
 import "./generator/fileStructure";
@@ -48,17 +57,25 @@ import "./generator/MultiPurpose";
 
 
 function Main() {
+
+  // value: the code currently being displayed in the textarea
+  // copysuccess: to tell whether the copyCodeToClipboard has been executed
+  // uploadFile to see if file has been uploaded by a user
+
   const [value, setValue] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
   const [uploadFile, setUploadFile] = useState(false)
+
+  // Reference to pass to blockly div
   const simpleWorkspace = createRef();
 
   const fileInput = useRef(null);
 
   useEffect(() => {
-    console.log("useEffect");
+    console.log("main mounted");
   }, []);
 
+  // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
   const generateCode = () => {
     var code = tlVerilogGenerator.workspaceToCode(
       simpleWorkspace.current.workspace
@@ -67,6 +84,7 @@ function Main() {
     setValue(code);
   };
 
+  // Copy to Clipboard Button, copies whatever text is showing in the textarea
   const copyCodeToClipboard = () => {
     const el = document.getElementById("textarea");
     el.select();
@@ -84,6 +102,9 @@ function Main() {
     }
   };
 
+
+  // Save Workspace Button, saves whatever is in the workspace to a file called program in the local storage 
+  // after converting it to XML and displaying it to the textarea
   const saveWorkspace = () => {
     var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     var domToPretty = Blockly.Xml.domToPrettyText(xml);
@@ -92,40 +113,7 @@ function Main() {
     console.log("pretty text:", domToPretty);
   };
 
-  // const handleFileUpload = (event) => {
-  //   var file = fileInput.files[0];
-  //      var textType = /text.*/;
-   
-  //      if (file.type.match(textType)) {
-  //          var reader = new FileReader()
-
-  //         reader.onload = function(e) {
-  //           const text = reader.result;
-  //           console.log(text);
-
-  //         var program = text;
-  //         simpleWorkspace.current.workspace.clear();
-  //         var textToDom = Blockly.Xml.textToDom(program);
-  //         Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-  //         setValue(textToDom);
-  //         console.log("textToDom:", textToDom);
-  //   };
-  // }
-  //   console.log("handleFileUpload", event.target.files[0]);
-  // };
-
-
-  // var upload = document.getElementById('fileInput')
-  // console.log(upload)
-  // if(upload){
-  //   upload.addEventListener('change', () => {
-
-  // const addToWorkspace = (program, simpleWorkspace) => {
-  //   console.log('program: ', program, simpleWorkspace.current)
-  //   var textToDom = Blockly.Xml.textToDom(program);
-  //   simpleWorkspace.current.workspace.clear();
-  //   Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-  // }
+  s
 
   const  handleFileUpload = () => {
   var upload = document.getElementById('fileInput')
@@ -318,7 +306,7 @@ function Main() {
             <Block type="comparison_operator" />
             <Block type="arithmetic_operator" />
             <Block type="retiming" />
-            {/* <Block type="dynamic_dropdown" /> */}
+            <Block type="dynamic_dropdown" />
           </Category>
 
           <Category name="ternary">
