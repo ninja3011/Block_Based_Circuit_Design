@@ -113,7 +113,8 @@ function Main() {
     console.log("pretty text:", domToPretty);
   };
 
-  s
+  
+  // File upload button so that the user can upload a XML file to the textarea
 
   const  handleFileUpload = () => {
   var upload = document.getElementById('fileInput')
@@ -138,6 +139,8 @@ function Main() {
       reader.readAsText(file);
   };
 
+
+  // Recover From Storage Button, it extracts the file program from local storage and then converts that XML to Blockly Blocks
   const restoreWorkspace = () => {
     var program = window.localStorage.getItem("myProgram");
     simpleWorkspace.current.workspace.clear();
@@ -147,6 +150,8 @@ function Main() {
     console.log("textToDom:", textToDom);
   };
 
+
+  // Recover From Code Button, it basically takes the code from the textarea and converts it to blockly blocks
   const manualrestoreWorkspace = () => {
     var program = value;
     console.log(simpleWorkspace.current.workspace);
@@ -158,10 +163,13 @@ function Main() {
     console.log("textToDom:", textToDom);
   };
 
+
+  // This function is written so the user can make edits in the textarea manually 
   const manualtext = (event) => {
     setValue(event.target.value);
   };
 
+  // Download Button, creates an prompt to ask for filename(with extension) and then downloads the file. 
   const downloadXmlFile = () => {
     const element = document.createElement("a");
     const file = new Blob([value], {type: 'text/plain'});
@@ -170,15 +178,11 @@ function Main() {
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   }
-
-  const pipesignal_callback = () => {
-    console.log("clicked")
-  };
-
   
 
   return (
     <div>
+      {/* Right Panel with Functionality(buttons) */}
       <header className="App-header">
         <div>
           <div id="buttons_xml">
@@ -238,6 +242,7 @@ function Main() {
         </div>
       </header>
 
+      
       <BlocklyComponent
         ref={simpleWorkspace}
         colour={"black"}
@@ -249,6 +254,8 @@ function Main() {
           drag: true,
           wheel: true,
         }}
+
+        // Blocks that show up when the component renders
         initialXml={`
         <xml xmlns="https://developers.google.com/blockly/xml">
         <block type="tlv_version" id="i:~1Q]=gvSsiYTmS#{up" x="187" y="59">
@@ -274,7 +281,8 @@ function Main() {
       </xml> 
 
       `}
-      >
+      > {/* End of BlocklyComponent */}
+        {/* Creating the Toolbox  */}
         <Category name="File Structure" colour="199">
           <Block type="tlv" />
           <Block type="tlv_version" />
