@@ -3,34 +3,24 @@ import BlocklyComponent from './BlocklyComponent';
 
 export default BlocklyComponent;
 
-const Block = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("block", props, children);
-};
+function Block({children, ...rest}) {
+    return React.createElement("block", rest, children);
+ }
 
-const Category = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("category", props, children);
-};
+function Category({children, ...rest}) {
+    return React.createElement("category", rest, children);
+ }
 
-const Value = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("value", props, children);
-};
+ function Value({children, ...rest}) {
+    return React.createElement("value", rest, children);
+ }
 
-const Field = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("field", props, children);
-};
+ function Field({children, ...rest}) {
+    return React.createElement("field", rest, children);
+ }
 
-const Shadow = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("shadow", props, children);
-};
+ function Shadow({children, ...rest}) {
+    return React.createElement("shadow", rest, children);
+ }
 
 export { Block, Category, Value, Field, Shadow }
