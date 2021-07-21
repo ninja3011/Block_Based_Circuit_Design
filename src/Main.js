@@ -23,18 +23,6 @@ import "./App.css";
 // Importing the custom generator
 import tlVerilogGenerator from "./generator/tl_verilog.js";
 
-// Importing all block definitions
-import "./blocks/Components";
-import "./blocks/Expressions";
-import "./blocks/fileStructure";
-import "./blocks/m4Modules";
-import "./blocks/Printing";
-import "./blocks/Procedures";
-import "./blocks/Scopes";
-import "./blocks/Sequential";
-import "./blocks/Signals";
-import "./blocks/Ternary";
-import "./blocks/MultiPurpose";
 
 // Importing all the block code generators
 import "./generator/Components";
