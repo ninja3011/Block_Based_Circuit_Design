@@ -167,11 +167,27 @@ function Main() {
     element.click();
   }
   
+  const App_header_style ={
+    
+      backgroundColor: '#282c34',
+      minHeight: '100vh',
+      width: '30%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 'calc(12px + 1vmin)',
+      color: 'black',
+      float: 'right',
+      boxSizing:' border-box',
+      padding:' 1rem'
+  };
+  
 
   return (
     <div>
       {/* Right Panel with Functionality(buttons) */}
-      <header className="App-header">
+      <header className="App-header" style={App_header_style}>
         <div>
           <div id="buttons_xml">
             <Button variant="success" size="sm" onClick={generateCode}>

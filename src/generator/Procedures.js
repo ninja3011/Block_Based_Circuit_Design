@@ -3,8 +3,8 @@ import tlVerilogGenerator from './tl_verilog'
 
 
 
- 
-tlVerilogGenerator['procedures_defreturn'] = function(block) {
+tlVerilogGenerator["procedures_defreturn"] = (block) => {
+
    // Define a procedure with a return value.
    var funcName =tlVerilogGenerator.nameDB_.getName(
        block.getFieldValue('NAME'), Blockly.PROCEDURE_CATEGORY_NAME);
@@ -52,10 +52,13 @@ tlVerilogGenerator['procedures_defreturn'] = function(block) {
  
  // Defining a procedure without a return value uses the same generator as
  // a procedure with a return value.
-tlVerilogGenerator['procedures_defnoreturn'] =
+
+
+ tlVerilogGenerator['procedures_defnoreturn'] =
     tlVerilogGenerator['procedures_defreturn'];
  
-tlVerilogGenerator['procedures_callreturn'] = function(block) {
+
+ tlVerilogGenerator["procedures_callreturn"] = (block) => {
    // Call a procedure with a return value.
    var funcName =tlVerilogGenerator.nameDB_.getName(
        block.getFieldValue('NAME'), Blockly.PROCEDURE_CATEGORY_NAME);
@@ -69,7 +72,9 @@ tlVerilogGenerator['procedures_callreturn'] = function(block) {
    return [code,tlVerilogGenerator.ORDER_FUNCTION_CALL];
  };
  
-tlVerilogGenerator['procedures_callnoreturn'] = function(block) {
+
+
+tlVerilogGenerator["procedures_callnoreturn"] = (block) => {
    // Call a procedure with no return value.
    // Generated code is for a function call as a statement is the same as a
    // function call as a value, with the addition of line ending.
@@ -77,7 +82,7 @@ tlVerilogGenerator['procedures_callnoreturn'] = function(block) {
    return tuple[0] + ';\n';
  };
  
-tlVerilogGenerator['procedures_ifreturn'] = function(block) {
+ tlVerilogGenerator["procedures_ifreturn"] = (block) => {
    // Conditionally return value from a procedure.
    var condition =tlVerilogGenerator.valueToCode(block, 'CONDITION',
       tlVerilogGenerator.ORDER_NONE) || 'false';

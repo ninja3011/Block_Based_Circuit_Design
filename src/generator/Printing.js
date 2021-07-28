@@ -30,7 +30,7 @@ Blockly.Blocks['display'] = {
   }
 };
 
-tlVerilogGenerator['display'] = function(block) {
+tlVerilogGenerator["display"] = (block) => {
     var text_print = block.getFieldValue('print');
     var text_signals = block.getFieldValue('signals');
     // TODO: Assemble JavaScript into code variable.

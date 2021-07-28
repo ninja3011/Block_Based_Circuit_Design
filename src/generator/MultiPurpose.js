@@ -28,7 +28,7 @@ Blockly.Blocks['part_general'] = {
   }
 };
 
-tlVerilogGenerator['part_general'] = function(block) {
+tlVerilogGenerator["part_general"] = (block) => {
     var text_name = block.getFieldValue('NAME');
     var value_general = tlVerilogGenerator.valueToCode(block, 'general',  tlVerilogGenerator.PRECEDENCE);
     var code = text_name+value_general;
@@ -60,7 +60,7 @@ Blockly.Blocks['TLV_CODE_BLOCK'] = {
     }
   };
 
-tlVerilogGenerator['TLV_CODE_BLOCK'] = function (block) {
+  tlVerilogGenerator["TLV_CODE_BLOCK"] = (block) => {
   
        var textValue = block.getFieldValue('FIELDNAME');
        var code =  textValue ;

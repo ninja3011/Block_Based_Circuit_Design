@@ -48,7 +48,7 @@ Blockly.Blocks['expression'] = {
 };
 
 
-tlVerilogGenerator['expression'] = function(block) {
+  tlVerilogGenerator["expression"] = (block) => {
     var value_result = tlVerilogGenerator.valueToCode(block, 'result',tlVerilogGenerator.PRECEDENCE);
     var dropdown_assignment = block.getFieldValue('assignment');
     var value_signal = tlVerilogGenerator.valueToCode(block, 'signal',tlVerilogGenerator.PRECEDENCE);

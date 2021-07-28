@@ -14,11 +14,8 @@ Blockly.Blocks["m4_makerchip_module"] = {
   },
 };
 
-tlVerilogGenerator["m4_makerchip_module"] = function (block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = "m4_makerchip_module";
-  return code;
-};
+
+tlVerilogGenerator["m4_makerchip_module"] = (block) => "m4_makerchip_module" ;
 
 Blockly.Blocks["m4plus"] = {
   init: function () {
@@ -40,9 +37,8 @@ Blockly.Blocks["m4plus"] = {
   },
 };
 
-tlVerilogGenerator["m4plus"] = function (block) {
+tlVerilogGenerator["m4plus"] = (block) => {
   var text_macro = block.getFieldValue("macro");
-  // TODO: Assemble JavaScript into code variable.
   var code = "m4+" + text_macro;
   return code;
 };
@@ -67,9 +63,8 @@ Blockly.Blocks["m4_include_lib"] = {
   },
 };
 
-tlVerilogGenerator["m4_include_lib"] = function (block) {
+tlVerilogGenerator["m4_include_lib"] = (block) => {
   var text_url = block.getFieldValue("url");
-  // TODO: Assemble JavaScript into code variable.
   var code = "m4_include_lib(['" + text_url + "'])";
   return code;
 };
@@ -95,9 +90,8 @@ Blockly.Blocks["m4asm"] = {
   },
 };
 
-tlVerilogGenerator["m4asm"] = function (block) {
+tlVerilogGenerator["m4_asm"] = (block) => {
   var text_asm = block.getFieldValue("asm");
-  // TODO: Assemble JavaScript into code variable.
   var code = "m4_asm(" + text_asm + ")";
   return code;
 };
@@ -129,10 +123,9 @@ Blockly.Blocks["m4_general"] = {
   },
 };
 
-tlVerilogGenerator["m4_general"] = function (block) {
+tlVerilogGenerator["m4_general"] = (block) => {
   var text_func = block.getFieldValue("func");
   var text_args = block.getFieldValue("args");
-  // TODO: Assemble JavaScript into code variable.
   var code = "m4_" + text_func + "(" + text_args + ")";
   return code;
 };

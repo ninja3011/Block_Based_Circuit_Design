@@ -69,7 +69,8 @@ Blockly.Blocks['variables_get'] = {
 };
 
 
-tlVerilogGenerator['variables_get'] = function(block) {
+
+  tlVerilogGenerator["variables_get"] = (block) => {
     var value_scope = tlVerilogGenerator.valueToCode(block, 'scope',tlVerilogGenerator.PRECEDENCE);
     console.log(block.getFieldValue('VAR'));
     console.log(Blockly.Variables.NAME_TYPE);
@@ -135,7 +136,9 @@ tlVerilogGenerator['variables_get'] = function(block) {
   };
   
 
-  tlVerilogGenerator['variables_set'] = function(block) {
+ 
+    tlVerilogGenerator["variables_set"] = (block) => {
+
     var dropdown_type = block.getFieldValue('type');
     var variable_var = tlVerilogGenerator.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
     var value_signal_val = tlVerilogGenerator.valueToCode(block, 'signal_val',tlVerilogGenerator.PRECEDENCE);
@@ -172,7 +175,8 @@ tlVerilogGenerator['variables_get'] = function(block) {
     
   };
 
-  tlVerilogGenerator['pipesignal'] = function(block) {
+  tlVerilogGenerator["pipesignal"] = (block) => {
+
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var variable_pipesignal =tlVerilogGenerator.nameDB_.getName(block.getFieldValue('pipesignal'), Blockly.Variables.NAME_TYPE);
     var code = value_retiming+'$'+variable_pipesignal;
@@ -208,7 +212,7 @@ tlVerilogGenerator['variables_get'] = function(block) {
     
   };
 
-  tlVerilogGenerator['statesignal'] = function(block) {
+  tlVerilogGenerator["statesignal"] = (block) => {
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var variable_statesignal =tlVerilogGenerator.nameDB_.getName(block.getFieldValue('statesignal'), Blockly.Variables.NAME_TYPE);
     var code = value_retiming+'$'+variable_statesignal;
@@ -245,7 +249,7 @@ tlVerilogGenerator['variables_get'] = function(block) {
     
   };
 
-  tlVerilogGenerator['assignedsignal'] = function(block) {
+  tlVerilogGenerator["assignedsignal"] = (block) => {
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var variable_assignedsignal =tlVerilogGenerator.nameDB_.getName(block.getFieldValue('assignedsignal'), Blockly.Variables.NAME_TYPE);
     var code = value_retiming+'$$'+variable_assignedsignal;
@@ -281,8 +285,7 @@ tlVerilogGenerator['variables_get'] = function(block) {
     }
     
   };
-
-  tlVerilogGenerator['assignedstatesignal'] = function(block) {
+  tlVerilogGenerator["assignedstatesignal"] = (block) => {
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var variable_assignedstatesignal =tlVerilogGenerator.nameDB_.getName(block.getFieldValue('assignedstatesignal'), Blockly.Variables.NAME_TYPE);
      var code = value_retiming+'$$'+variable_assignedstatesignal;

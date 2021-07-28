@@ -39,7 +39,8 @@ Blockly.Blocks["include"] = {
   },
 };
 
-tlVerilogGenerator["include"] = function (block) {
+
+  tlVerilogGenerator["include"] = (block) => {
   var text_filename = block.getFieldValue("filename");
   var code = '`include "' + text_filename + '";';
   return code;
@@ -58,11 +59,7 @@ Blockly.Blocks["endmodule"] = {
   },
 };
 
-tlVerilogGenerator["endmodule"] = function (block) {
-  // TODO: Assemble TLV into code variable.
-  var code = "endmodule\n";
-  return code;
-};
+tlVerilogGenerator["endmodule"] = (block) => "endmodule";
 
 Blockly.Blocks["tlv"] = {
   init: function () {
@@ -87,7 +84,7 @@ Blockly.Blocks["tlv"] = {
   },
 };
 
-tlVerilogGenerator["tlv"] = function (block) {
+tlVerilogGenerator["tlv"] = (block) => {
   var statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
   // TODO: Assemble JavaScript into code variable.
   var code = "\\TLV\n" + statements_name;
@@ -120,9 +117,8 @@ Blockly.Blocks['sv'] = {
   }
 };
 
-tlVerilogGenerator["sv"] = function (block) {
+tlVerilogGenerator["sv"] = (block) => {
   var statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
-  // TODO: Assemble JavaScript into code variable.
   var code = "\\SV\n" + statements_name;
   return code;
 };
@@ -149,9 +145,8 @@ Blockly.Blocks['sv_plus'] = {
   }
 };
 
-tlVerilogGenerator["sv_plus"] = function (block) {
+tlVerilogGenerator["sv_plus"] = (block) => {
   var statements_sv = tlVerilogGenerator.statementToCode(block, "SV");
-  // TODO: Assemble JavaScript into code variable.
   var code = "\\SV_plus\n" + statements_sv;
   return code;
 };

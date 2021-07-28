@@ -1,20 +1,5 @@
 
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(12px + 1vmin);
-    color: black;
-    float: right;
-    box-sizing: border-box;
-    padding: 1rem;
-}
-
 .btns {
   text-align: center;
   display: inline-block;

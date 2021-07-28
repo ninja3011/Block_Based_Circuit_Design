@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./BlocklyComponent.css";
 import "./index.js";
 import Blockly from "blockly/core";
 import locale from "blockly/msg/en";
@@ -41,11 +40,18 @@ class BlocklyComponent extends React.Component {
   }
 
   render() {
+    const blocklyDiv_style = {
+      height: "100%",
+      width: "70%",
+      position: "absolute",
+      bottom: 0
+      
+    };
     const { children } = this.props;
 
     return (
       <>
-        <div ref={this.blocklyDiv} id="blocklyDiv" />
+        <div ref={this.blocklyDiv} id="blocklyDiv" style={blocklyDiv_style} />
         <xml
           xmlns="https://developers.google.com/blockly/xml"
           is="blockly"

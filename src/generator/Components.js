@@ -41,7 +41,7 @@ Blockly.Blocks["signal"] = {
   },
 };
 
-tlVerilogGenerator['signal'] = function(block) {
+tlVerilogGenerator["signal"] = (block) => {
 
     var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
     var dropdown_type = block.getFieldValue('type');
@@ -86,7 +86,8 @@ Blockly.Blocks["logical_operator"] = {
     },
   };
 
-tlVerilogGenerator['logical_operator'] = function(block) {
+
+tlVerilogGenerator["logical_operator"] = (block) => {
     var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
     var dropdown_name = block.getFieldValue('type');
     var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2', tlVerilogGenerator.PRECEDENCE);
@@ -134,7 +135,8 @@ tlVerilogGenerator['logical_operator'] = function(block) {
     },
   };
 
-  tlVerilogGenerator['comparison_operator'] = function(block) {
+
+    tlVerilogGenerator["comparison_operator"] = (block) => {
     var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1',  tlVerilogGenerator.PRECEDENCE);
     var dropdown_operator = block.getFieldValue('operator');
     var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
@@ -180,7 +182,9 @@ tlVerilogGenerator['logical_operator'] = function(block) {
     },
   };
 
-  tlVerilogGenerator['arithmetic_operator'] = function(block) {
+
+  tlVerilogGenerator["arithmetic_operator"] = (block) => {
+
     var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
     var dropdown_operator = block.getFieldValue('operator');
     var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
@@ -268,7 +272,8 @@ tlVerilogGenerator['logical_operator'] = function(block) {
     );
   });
 
-  tlVerilogGenerator['dynamic_dropdown'] = function(block) {
+
+  tlVerilogGenerator["dynamic_dropdown"] = (block) => {
     
     var dropdown_SCOPE = block.getFieldValue('SCOPE');
     // TODO: Change ORDER_NONE to the correct strength.
@@ -325,8 +330,8 @@ Blockly.Extensions.register("retiming_func", function () {
   };
 });
 
-  tlVerilogGenerator['retiming'] = function(block) {
-    
+  tlVerilogGenerator["retiming"] = (block) => {
+  
     var retiming_value = block.getFieldValue('retimer_val');
   // TODO: Change ORDER_NONE to the correct strength.
   
@@ -356,12 +361,9 @@ Blockly.Extensions.register("retiming_func", function () {
     },
   };
 
-  tlVerilogGenerator['semicolon'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '; \n';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, tlVerilogGenerator.PRECEDENCE];
-  };
+
+  tlVerilogGenerator["semicolon"] = (block) => "; "
+
   
   Blockly.Blocks["parenthesis"] = {
     init: function () {
