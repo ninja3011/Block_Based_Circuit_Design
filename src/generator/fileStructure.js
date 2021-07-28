@@ -146,7 +146,7 @@ Blockly.Blocks['sv_plus'] = {
 };
 
 tlVerilogGenerator["sv_plus"] = (block) => {
-  var statements_sv = tlVerilogGenerator.statementToCode(block, "SV");
+  const statements_sv = tlVerilogGenerator.statementToCode(block, "SV");
   var code = "\\SV_plus\n" + statements_sv;
   return code;
 };

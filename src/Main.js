@@ -200,7 +200,7 @@ function Main() {
             >
               Copy to Clipboard
             </Button>
-            <Button variant="success" size="sm" onClick={() => saveWorkspace()}>
+            <Button variant="success" size="sm" onClick={saveWorkspace}>
               Save To Storage
             </Button>
 

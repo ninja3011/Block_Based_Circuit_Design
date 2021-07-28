@@ -20,7 +20,10 @@ function Category({children, ...rest}) {
  }
 
  function Shadow({children, ...rest}) {
-    return React.createElement("shadow", rest, children);
+   //  return React.createElement("shadow", rest, children);
+    return <shadow {...rest}>{children}</shadow>
  }
 
 export { Block, Category, Value, Field, Shadow }
+
+<Shadow>ygygy</Shadow>
