@@ -387,7 +387,8 @@ Blockly.Extensions.register("retiming_func", function () {
     },
   };
 
-  tlVerilogGenerator['parenthesis'] = function(block) {
+
+    tlVerilogGenerator["parenthesis"] = (block) => {
     const value_name = tlVerilogGenerator.valueToCode(block, 'NAME', tlVerilogGenerator.PRECEDENCE);
     // TODO: Assemble JavaScript into code variable.
     const code = '('+ value_name+') '

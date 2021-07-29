@@ -56,11 +56,13 @@ function Main() {
 
   // Reference to pass to blockly div
   const simpleWorkspace = createRef();
-
+  const blocklyDiv = createRef();
+  const toolbox = createRef();
   const fileInput = useRef(null);
 
   useEffect(() => {
     console.log("main mounted");
+    
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
@@ -244,11 +246,13 @@ function Main() {
           </div>
           <textarea id="textarea" value={value} onChange={manualtext} />
         </div>
-      </header>
+      </header>  
 
       
       <BlocklyComponent
         ref={simpleWorkspace}
+        blocklyDiv ={blocklyDiv}
+        toolbox = {toolbox}
         colour={"black"}
         readOnly={false}
         trashcan={true}
