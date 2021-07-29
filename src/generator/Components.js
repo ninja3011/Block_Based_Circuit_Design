@@ -43,10 +43,10 @@ Blockly.Blocks["signal"] = {
 
 tlVerilogGenerator["signal"] = (block) => {
 
-    var value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
-    var dropdown_type = block.getFieldValue('type');
-    var text_signal = block.getFieldValue('signal');
-    var code = value_retiming+ dropdown_type +text_signal;
+    const value_retiming = tlVerilogGenerator.valueToCode(block, 'retiming',tlVerilogGenerator.PRECEDENCE);
+    const dropdown_type = block.getFieldValue('type');
+    const text_signal = block.getFieldValue('signal');
+    const code = value_retiming+ dropdown_type +text_signal;
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
@@ -88,10 +88,10 @@ Blockly.Blocks["logical_operator"] = {
 
 
 tlVerilogGenerator["logical_operator"] = (block) => {
-    var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
-    var dropdown_name = block.getFieldValue('type');
-    var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2', tlVerilogGenerator.PRECEDENCE);
-    var code ='('+value_sig1 + " "+ dropdown_name + " "+ value_sig2+')' ;
+    const value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
+    const dropdown_name = block.getFieldValue('type');
+    const value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2', tlVerilogGenerator.PRECEDENCE);
+    const code ='('+value_sig1 + " "+ dropdown_name + " "+ value_sig2+')' ;
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
@@ -137,11 +137,11 @@ tlVerilogGenerator["logical_operator"] = (block) => {
 
 
     tlVerilogGenerator["comparison_operator"] = (block) => {
-    var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1',  tlVerilogGenerator.PRECEDENCE);
-    var dropdown_operator = block.getFieldValue('operator');
-    var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
+    const value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1',  tlVerilogGenerator.PRECEDENCE);
+    const dropdown_operator = block.getFieldValue('operator');
+    const value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
     // TODO: Change ORDER_NONE to the correct strength.
-    var code ='('+value_sig1 + " "+ dropdown_operator + " "+ value_sig2+')' ;
+    const code ='('+value_sig1 + " "+ dropdown_operator + " "+ value_sig2+')' ;
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
   
@@ -185,12 +185,12 @@ tlVerilogGenerator["logical_operator"] = (block) => {
 
   tlVerilogGenerator["arithmetic_operator"] = (block) => {
 
-    var value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
-    var dropdown_operator = block.getFieldValue('operator');
-    var value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
+    const value_sig1 = tlVerilogGenerator.valueToCode(block, 'sig1', tlVerilogGenerator.PRECEDENCE);
+    const dropdown_operator = block.getFieldValue('operator');
+    const value_sig2 = tlVerilogGenerator.valueToCode(block, 'sig2',  tlVerilogGenerator.PRECEDENCE);
      // TODO: Assemble JavaScript into code variable.
     // TODO: Change ORDER_NONE to the correct strength.
-    var code ='('+value_sig1 + " "+ dropdown_operator + " "+ value_sig2+')' ;
+    const code ='('+value_sig1 + " "+ dropdown_operator + " "+ value_sig2+')' ;
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
   
@@ -232,15 +232,15 @@ tlVerilogGenerator["logical_operator"] = (block) => {
   
     this.getInput("INPUT").appendField(
       new Blockly.FieldDropdown(function () {
-        var options = [["", ""]];
-        var perms = [];
-        var blocks = Blockly.mainWorkspace.getAllBlocks();
+        const options = [["", ""]];
+        const perms = [];
+        const blocks = Blockly.mainWorkspace.getAllBlocks();
         console.log(blocks);
-        var cnt = 0;
+        const cnt = 0;
         for (let i = 0; i < blocks.length; i++) {
-          var tmp_PIPE = blocks[i].getFieldValue("pipeline");
-          var tmp_HIER = blocks[i].getFieldValue("beh_hier");
-          var tmp_STAGENO = blocks[i].getFieldValue("stage_no");
+          const tmp_PIPE = blocks[i].getFieldValue("pipeline");
+          const tmp_HIER = blocks[i].getFieldValue("beh_hier");
+          const tmp_STAGENO = blocks[i].getFieldValue("stage_no");
           console.log(tmp_PIPE, tmp_HIER, tmp_STAGENO);
           if (tmp_PIPE != null) {
             tmp_PIPE = "|" + tmp_PIPE;
@@ -258,9 +258,9 @@ tlVerilogGenerator["logical_operator"] = (block) => {
             perms[cnt] = tmp_STAGENO;
           }
         }
-        for (var a in permutations(perms)) {
+        for (const a in permutations(perms)) {
           console.log("perms", perms);
-          var combination = permutations(perms)[a].join("");
+          const combination = permutations(perms)[a].join("");
           console.log(a, "\n", combination);
   
           options[a] = [combination, combination];
@@ -275,9 +275,9 @@ tlVerilogGenerator["logical_operator"] = (block) => {
 
   tlVerilogGenerator["dynamic_dropdown"] = (block) => {
     
-    var dropdown_SCOPE = block.getFieldValue('SCOPE');
+    const dropdown_SCOPE = block.getFieldValue('SCOPE');
     // TODO: Change ORDER_NONE to the correct strength.
-    var code = dropdown_SCOPE  ;
+    const code = dropdown_SCOPE  ;
     return [code, tlVerilogGenerator.PRECEDENCE];
   };
   
@@ -332,10 +332,10 @@ Blockly.Extensions.register("retiming_func", function () {
 
   tlVerilogGenerator["retiming"] = (block) => {
   
-    var retiming_value = block.getFieldValue('retimer_val');
+    const retiming_value = block.getFieldValue('retimer_val');
   // TODO: Change ORDER_NONE to the correct strength.
   
-    var code;
+    const code = '';
   
     if(retiming_value == 0){
        code = '<>'+retiming_value  ;
@@ -388,9 +388,9 @@ Blockly.Extensions.register("retiming_func", function () {
   };
 
   tlVerilogGenerator['parenthesis'] = function(block) {
-    var value_name = tlVerilogGenerator.valueToCode(block, 'NAME', tlVerilogGenerator.PRECEDENCE);
+    const value_name = tlVerilogGenerator.valueToCode(block, 'NAME', tlVerilogGenerator.PRECEDENCE);
     // TODO: Assemble JavaScript into code variable.
-    var code = '('+ value_name+') '
+    const code = '('+ value_name+') '
     // TODO: Change ORDER_NONE to the correct strength.
     return [code,tlVerilogGenerator.PRECEDENCE];
   };

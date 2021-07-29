@@ -38,8 +38,8 @@ Blockly.Blocks["m4plus"] = {
 };
 
 tlVerilogGenerator["m4plus"] = (block) => {
-  var text_macro = block.getFieldValue("macro");
-  var code = "m4+" + text_macro;
+  const text_macro = block.getFieldValue("macro");
+  const code = "m4+" + text_macro;
   return code;
 };
 
@@ -64,8 +64,8 @@ Blockly.Blocks["m4_include_lib"] = {
 };
 
 tlVerilogGenerator["m4_include_lib"] = (block) => {
-  var text_url = block.getFieldValue("url");
-  var code = "m4_include_lib(['" + text_url + "'])";
+  const text_url = block.getFieldValue("url");
+  const code = "m4_include_lib(['" + text_url + "'])";
   return code;
 };
 
@@ -91,8 +91,8 @@ Blockly.Blocks["m4asm"] = {
 };
 
 tlVerilogGenerator["m4_asm"] = (block) => {
-  var text_asm = block.getFieldValue("asm");
-  var code = "m4_asm(" + text_asm + ")";
+  const text_asm = block.getFieldValue("asm");
+  const code = "m4_asm(" + text_asm + ")";
   return code;
 };
 
@@ -124,8 +124,8 @@ Blockly.Blocks["m4_general"] = {
 };
 
 tlVerilogGenerator["m4_general"] = (block) => {
-  var text_func = block.getFieldValue("func");
-  var text_args = block.getFieldValue("args");
-  var code = "m4_" + text_func + "(" + text_args + ")";
+  const text_func = block.getFieldValue("func");
+  const text_args = block.getFieldValue("args");
+  const code = "m4_" + text_func + "(" + text_args + ")";
   return code;
 };

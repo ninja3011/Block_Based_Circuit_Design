@@ -49,10 +49,10 @@ Blockly.Blocks['expression'] = {
 
 
   tlVerilogGenerator["expression"] = (block) => {
-    var value_result = tlVerilogGenerator.valueToCode(block, 'result',tlVerilogGenerator.PRECEDENCE);
-    var dropdown_assignment = block.getFieldValue('assignment');
-    var value_signal = tlVerilogGenerator.valueToCode(block, 'signal',tlVerilogGenerator.PRECEDENCE);
-    var code =value_result +  ' '+ dropdown_assignment + ' ' +value_signal+ ';';
+    const value_result = tlVerilogGenerator.valueToCode(block, 'result',tlVerilogGenerator.PRECEDENCE);
+    const dropdown_assignment = block.getFieldValue('assignment');
+    const value_signal = tlVerilogGenerator.valueToCode(block, 'signal',tlVerilogGenerator.PRECEDENCE);
+    const code =value_result +  ' '+ dropdown_assignment + ' ' +value_signal+ ';';
     return code;
   };
 

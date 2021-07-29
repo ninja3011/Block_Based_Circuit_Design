@@ -41,8 +41,8 @@ Blockly.Blocks["include"] = {
 
 
   tlVerilogGenerator["include"] = (block) => {
-  var text_filename = block.getFieldValue("filename");
-  var code = '`include "' + text_filename + '";';
+  const text_filename = block.getFieldValue("filename");
+  const code = '`include "' + text_filename + '";';
   return code;
 };
 
@@ -85,9 +85,9 @@ Blockly.Blocks["tlv"] = {
 };
 
 tlVerilogGenerator["tlv"] = (block) => {
-  var statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
+  const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
   // TODO: Assemble JavaScript into code variable.
-  var code = "\\TLV\n" + statements_name;
+  const code = "\\TLV\n" + statements_name;
   return code;
 };
 
@@ -118,8 +118,8 @@ Blockly.Blocks['sv'] = {
 };
 
 tlVerilogGenerator["sv"] = (block) => {
-  var statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
-  var code = "\\SV\n" + statements_name;
+  const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
+  const code = "\\SV\n" + statements_name;
   return code;
 };
 
@@ -147,6 +147,6 @@ Blockly.Blocks['sv_plus'] = {
 
 tlVerilogGenerator["sv_plus"] = (block) => {
   const statements_sv = tlVerilogGenerator.statementToCode(block, "SV");
-  var code = "\\SV_plus\n" + statements_sv;
+  const code = "\\SV_plus\n" + statements_sv;
   return code;
 };

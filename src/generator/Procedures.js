@@ -6,9 +6,9 @@ import tlVerilogGenerator from './tl_verilog'
 tlVerilogGenerator["procedures_defreturn"] = (block) => {
 
    // Define a procedure with a return value.
-   var funcName =tlVerilogGenerator.nameDB_.getName(
+   const funcName =tlVerilogGenerator.nameDB_.getName(
        block.getFieldValue('NAME'), Blockly.PROCEDURE_CATEGORY_NAME);
-   var xfix1 = '';
+   const xfix1 = '';
   //  if (tlVerilogGenerator.STATEMENT_PREFIX) {
   //    xfix1 +=tlVerilogGenerator.injectId(tlVerilogGenerator.STATEMENT_PREFIX,
   //        block);
@@ -20,16 +20,16 @@ tlVerilogGenerator["procedures_defreturn"] = (block) => {
   //  if (xfix1) {
   //    xfix1 =tlVerilogGenerator.prefixLines(xfix1,tlVerilogGenerator.INDENT);
   //  }
-   var loopTrap = '';
+   const loopTrap = '';
   //  if (tlVerilogGenerator.INFINITE_LOOP_TRAP) {
   //    loopTrap =tlVerilogGenerator.prefixLines(
   //       tlVerilogGenerator.injectId(tlVerilogGenerator.INFINITE_LOOP_TRAP,
   //        block),tlVerilogGenerator.INDENT);
   //  }
-   var branch =tlVerilogGenerator.statementToCode(block, 'STACK');
-  //  var returnValue =tlVerilogGenerator.valueToCode(block, 'RETURN',
+   const branch =tlVerilogGenerator.statementToCode(block, 'STACK');
+  //  const returnValue =tlVerilogGenerator.valueToCode(block, 'RETURN',
   //     tlVerilogGenerator.ORDER_NONE) || '';
-   var xfix2 = '';
+   const xfix2 = '';
   //  if (branch && returnValue) {
   //    // After executing the function body, revisit this block for the return.
   //    xfix2 = xfix1;
@@ -37,13 +37,13 @@ tlVerilogGenerator["procedures_defreturn"] = (block) => {
   //  if (returnValue) {
   //    returnValue =tlVerilogGenerator.INDENT + 'return ' + returnValue + ';\n';
   //  }
-  //  var args = [];
-  //  var variables = block.getVars();
-  //  for (var i = 0; i < variables.length; i++) {
+  //  const args = [];
+  //  const variables = block.getVars();
+  //  for (const i = 0; i < variables.length; i++) {
   //    args[i] =tlVerilogGenerator.nameDB_.getName(variables[i],
   //        Blockly.VARIABLE_CATEGORY_NAME);
   //  }
-   var code = branch;
+   const code = branch;
   //  code =tlVerilogGenerator.scrub_(block, code);
    // Add % so as not to collide with helper functions in definitions list.
   tlVerilogGenerator.definitions_['%' + funcName] = code;
@@ -60,15 +60,15 @@ tlVerilogGenerator["procedures_defreturn"] = (block) => {
 
  tlVerilogGenerator["procedures_callreturn"] = (block) => {
    // Call a procedure with a return value.
-   var funcName =tlVerilogGenerator.nameDB_.getName(
+   const funcName =tlVerilogGenerator.nameDB_.getName(
        block.getFieldValue('NAME'), Blockly.PROCEDURE_CATEGORY_NAME);
-   var args = [];
-   var variables = block.getVars();
-   for (var i = 0; i < variables.length; i++) {
+   const args = [];
+   const variables = block.getVars();
+   for (let i = 0; i < variables.length; i++) {
      args[i] =tlVerilogGenerator.valueToCode(block, 'ARG' + i,
         tlVerilogGenerator.ORDER_NONE) || 'null';
    }
-   var code = funcName + '(' + args.join(', ') + ')';
+   const code = funcName + '(' + args.join(', ') + ')';
    return [code,tlVerilogGenerator.ORDER_FUNCTION_CALL];
  };
  
@@ -78,15 +78,15 @@ tlVerilogGenerator["procedures_callnoreturn"] = (block) => {
    // Call a procedure with no return value.
    // Generated code is for a function call as a statement is the same as a
    // function call as a value, with the addition of line ending.
-   var tuple =tlVerilogGenerator['procedures_callreturn'](block);
+   const tuple =tlVerilogGenerator['procedures_callreturn'](block);
    return tuple[0] + ';\n';
  };
  
  tlVerilogGenerator["procedures_ifreturn"] = (block) => {
    // Conditionally return value from a procedure.
-   var condition =tlVerilogGenerator.valueToCode(block, 'CONDITION',
+   const condition =tlVerilogGenerator.valueToCode(block, 'CONDITION',
       tlVerilogGenerator.ORDER_NONE) || 'false';
-   var code = 'if (' + condition + ') {\n';
+   const code = 'if (' + condition + ') {\n';
    if (tlVerilogGenerator.STATEMENT_SUFFIX) {
      // Inject any statement suffix here since the regular one at the end
      // will not get executed if the return is triggered.
@@ -95,7 +95,7 @@ tlVerilogGenerator["procedures_callnoreturn"] = (block) => {
         tlVerilogGenerator.INDENT);
    }
    if (block.hasReturnValue_) {
-     var value =tlVerilogGenerator.valueToCode(block, 'VALUE',
+     const value =tlVerilogGenerator.valueToCode(block, 'VALUE',
         tlVerilogGenerator.ORDER_NONE) || 'null';
      code +=tlVerilogGenerator.INDENT + 'return ' + value + ';\n';
    } else {

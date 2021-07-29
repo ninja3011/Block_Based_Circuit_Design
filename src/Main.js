@@ -64,8 +64,8 @@ function Main() {
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
-  const generateCode = () => {
-    var code = tlVerilogGenerator.workspaceToCode(
+  const handleConvertToTLV = () => {
+    const code = tlVerilogGenerator.workspaceToCode(
       simpleWorkspace.current.workspace
     );
     console.log(simpleWorkspace.current.workspace);
@@ -73,13 +73,13 @@ function Main() {
   };
 
   // Copy to Clipboard Button, copies whatever text is showing in the textarea
-  const copyCodeToClipboard = () => {
+  const handleCopyCodeToClipboard = () => {
     const el = document.getElementById("textarea");
     el.select();
     document.execCommand("copy");
     setCopySuccess(true);
     try {
-      var status = document.execCommand("copy");
+      const status = document.execCommand("copy");
       if (!status) {
         console.error("Cannot copy text");
       } else {
@@ -93,9 +93,9 @@ function Main() {
 
   // Save Workspace Button, saves whatever is in the workspace to a file called program in the local storage 
   // after converting it to XML and displaying it to the textarea
-  const saveWorkspace = () => {
-    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    var domToPretty = Blockly.Xml.domToPrettyText(xml);
+  const handleSaveToStorage = () => {
+    const xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    const domToPretty = Blockly.Xml.domToPrettyText(xml);
     window.localStorage.setItem("myProgram", domToPretty);
     setValue(domToPretty);
     console.log("pretty text:", domToPretty);
@@ -104,9 +104,9 @@ function Main() {
   
   // File upload button so that the user can upload a XML file to the textarea
 
-  const  handleFileUpload = () => {
-  var upload = document.getElementById('fileInput')
-  var files = upload.files;
+  const  handleUploadFile = () => {
+  const upload = document.getElementById('fileInput')
+  const files = upload.files;
       
       if (files.length == 0) return;
     
@@ -116,7 +116,7 @@ function Main() {
       console.log(upload, file)
       reader.onload = (e) => {
           const file = e.target.result;
-          var program = file;
+          const program = file;
           console.log(simpleWorkspace.current.workspace);
           console.log('program: ', program, simpleWorkspace.current.workspace)
           setValue(program);
@@ -129,10 +129,10 @@ function Main() {
 
 
   // Recover From Storage Button, it extracts the file program from local storage and then converts that XML to Blockly Blocks
-  const restoreWorkspace = () => {
-    var program = window.localStorage.getItem("myProgram");
+  const handleRecoverFromStorage = () => {
+    const program = window.localStorage.getItem("myProgram");
     simpleWorkspace.current.workspace.clear();
-    var textToDom = Blockly.Xml.textToDom(program);
+    const textToDom = Blockly.Xml.textToDom(program);
     Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
     setValue(textToDom);
     console.log("textToDom:", textToDom);
@@ -140,11 +140,11 @@ function Main() {
 
 
   // Recover From Code Button, it basically takes the code from the textarea and converts it to blockly blocks
-  const manualrestoreWorkspace = () => {
-    var program = value;
+  const handleRecoverFromCode = () => {
+    const program = value;
     console.log(simpleWorkspace.current.workspace);
     simpleWorkspace.current.workspace.clear();
-    var textToDom = Blockly.Xml.textToDom(program);
+    const textToDom = Blockly.Xml.textToDom(program);
     Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
     setValue(textToDom);
     document.getElementById('textarea').value=program;
@@ -158,7 +158,7 @@ function Main() {
   };
 
   // Download Button, creates an prompt to ask for filename(with extension) and then downloads the file. 
-  const downloadXmlFile = () => {
+  const handleDownload = () => {
     const element = document.createElement("a");
     const file = new Blob([value], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
@@ -190,17 +190,17 @@ function Main() {
       <header className="App-header" style={App_header_style}>
         <div>
           <div id="buttons_xml">
-            <Button variant="success" size="sm" onClick={generateCode}>
+            <Button variant="success" size="sm" onClick={handleConvertToTLV}>
               Convert to TLV
             </Button>
             <Button
               variant="success"
               size="sm"
-              onClick={() => copyCodeToClipboard()}
+              onClick={handleCopyCodeToClipboard}
             >
               Copy to Clipboard
             </Button>
-            <Button variant="success" size="sm" onClick={saveWorkspace}>
+            <Button variant="success" size="sm" onClick={handleSaveToStorage}>
               Save To Storage
             </Button>
 
@@ -208,14 +208,14 @@ function Main() {
             <Button
               variant="success"
               size="sm"
-              onClick={() => restoreWorkspace()}
+              onClick={handleRecoverFromStorage}
             >
               Recover From Storage
             </Button>
             <Button
               variant="success"
               size="sm"
-              onClick={() => manualrestoreWorkspace()}
+              onClick={handleRecoverFromCode}
             >
               Recover From Code
             </Button>
@@ -225,7 +225,7 @@ function Main() {
             <Button
               variant="success"
               size="sm"
-              onClick={() => downloadXmlFile()}
+              onClick={handleDownload}
             >
              Download
             </Button>
@@ -239,7 +239,7 @@ function Main() {
             <input type="file" 
                    style={{visibility:"hidden"}}
                    id="fileInput"
-                   onChange={(event) => handleFileUpload()}
+                   onChange={(event) => handleUploadFile()}
             ></input>
           </div>
           <textarea id="textarea" value={value} onChange={manualtext} />

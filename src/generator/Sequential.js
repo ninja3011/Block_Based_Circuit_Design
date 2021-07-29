@@ -46,10 +46,10 @@ Blockly.Blocks['always_ff'] = {
 
 tlVerilogGenerator["always_ff"] = (block) => {
 
-    var dropdown_name = block.getFieldValue('NAME');
-    var statements_name = tlVerilogGenerator.statementToCode(block, 'NAME');
+    const dropdown_name = block.getFieldValue('NAME');
+    const statements_name = tlVerilogGenerator.statementToCode(block, 'NAME');
 
-    var code = 'always_ff @ (' + dropdown_name + ') begin\n'+statements_name+'\nend'  ;
+    const code = 'always_ff @ (' + dropdown_name + ') begin\n'+statements_name+'\nend'  ;
     return code;
   }
 
