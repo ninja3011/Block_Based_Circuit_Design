@@ -110,7 +110,7 @@ function Main() {
   const upload = document.getElementById('fileInput')
   const files = upload.files;
       
-      if (files.length == 0) return;
+      if (files.length === 0) return;
     
       const file = files[0];
     
