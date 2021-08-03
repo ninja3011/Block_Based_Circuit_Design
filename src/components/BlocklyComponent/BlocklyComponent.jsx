@@ -8,19 +8,9 @@ Blockly.setLocale(locale);
 
 
 function BlocklyComponent(props) {
-  const { blocklyDiv, toolbox, initialXml, children, ...rest } = props;
-
-  const primaryWorkspace = Blockly.inject(blocklyDiv.current, {
-      toolbox: toolbox.current,
-    });
+  const { blocklyDiv, toolbox, initialXml, children,ref, ...rest } = props;
 
 
-  if (initialXml) {
-    Blockly.Xml.domToWorkspace(
-      Blockly.Xml.textToDom(initialXml),
-      primaryWorkspace
-    );
-  }
 
   const blocklyDiv_style = {
     height: "100%",
@@ -33,7 +23,7 @@ function BlocklyComponent(props) {
   return (
     <>
     <div
-      ref={primaryWorkspace}
+      ref={ref}
       id="blocklyDiv" style={blocklyDiv_style} />
     <xml
       xmlns="https://developers.google.com/blockly/xml"

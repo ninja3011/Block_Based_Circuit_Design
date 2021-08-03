@@ -62,7 +62,41 @@ function Main() {
 
   useEffect(() => {
     console.log("main mounted");
-    
+    simpleWorkspace = Blockly.inject(blocklyDiv.current, {
+      toolbox: toolbox,
+    });
+
+    const initialXml= `
+    <xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="tlv_version" id="i:~1Q]=gvSsiYTmS#{up" x="187" y="59">
+      <next>
+        <block type="sv" id="/|dHN{#pzZDmwGVlZ\`B*">
+          <statement name="NAME">
+            <block type="m4_makerchip_module" id="G?]7\`vFN-../Ls7tGwHj"></block>
+          </statement>
+          <next>
+            <block type="tlv" id="X-Z5@s%;fL^z?g0BCtNP">
+              <next>
+                <block type="sv" id="5zFC9udPQJSZocZ\/I)\[s">
+                  <statement name="NAME">
+                    <block type="endmodule" id="D\[3;mCF|Cx;DpAKz4SfM"></block>
+                  </statement>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </next>
+    </block>
+  </xml> 
+
+  `;  
+  if (initialXml) {
+    Blockly.Xml.domToWorkspace(
+      Blockly.Xml.textToDom(initialXml),
+      simpleWorkspace
+    );
+  }
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
