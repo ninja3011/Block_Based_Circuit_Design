@@ -9,7 +9,7 @@ Blockly.Blocks['signal'] = {
 	  
 	var inputsC = RANGE_MIN;  
   this.appendValueInput('in1');
-	this.appendValueInput('in2');
+	// this.appendValueInput('in2');
 	//         .appendField('foo')
   this.appendDummyInput()
   .appendField(new Blockly.FieldVariable("signal"), "signame");

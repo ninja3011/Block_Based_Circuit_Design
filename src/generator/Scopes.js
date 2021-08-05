@@ -8,9 +8,9 @@ Blockly.Blocks["pipeline"] = {
       message0: "| %1 %2 %3",
       args0: [
         {
-          type: "field_input",
-          name: "pipeline",
-          text: "",
+          "type": "field_variable",
+          "name": "pipeline",
+          "variable": "pipeline"
         },
         {
           type: "input_dummy",
@@ -30,7 +30,7 @@ Blockly.Blocks["pipeline"] = {
 };
 
 tlVerilogGenerator["pipeline"] = (block) => {
-  const text_pipeline = block.getFieldValue("pipeline");
+  const text_pipeline =  tlVerilogGenerator.variableDB_.getName(block.getFieldValue('pipeline'), Blockly.Variables.NAME_TYPE);
   const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
   const code = "|" + text_pipeline + "\n" + statements_name;
   return code;
@@ -43,9 +43,9 @@ Blockly.Blocks["hierarchy"] = {
       message0: "/ %1 %2 %3",
       args0: [
         {
-          type: "field_input",
-          name: "beh_hier",
-          text: "",
+          "type": "field_variable",
+          "name": "beh_hier",
+          "variable": "hierarchy"
         },
         {
           type: "input_dummy",
@@ -64,7 +64,7 @@ Blockly.Blocks["hierarchy"] = {
 
 
 tlVerilogGenerator["hierarchy"] = (block) => {
-  const text_beh_hier = block.getFieldValue("beh_hier");
+  const text_beh_hier =tlVerilogGenerator.variableDB_.getName(block.getFieldValue('beh_hier'), Blockly.Variables.NAME_TYPE);
   const statements_block = tlVerilogGenerator.statementToCode(block, "block");
   const code = "/" + text_beh_hier + "\n" + statements_block;
   return code;
@@ -127,9 +127,9 @@ Blockly.Blocks["when"] = {
           ],
         },
         {
-          type: "field_input",
-          name: "signal",
-          text: "",
+          "type": "field_variable",
+          "name": "signal",
+          "variable": "signal"
         },
         {
           type: "input_dummy",
@@ -152,7 +152,7 @@ Blockly.Blocks["when"] = {
 tlVerilogGenerator["when"] = (block) => {
 
   const dropdown_sig_type = block.getFieldValue("sig_type");
-  const text_signal = block.getFieldValue("signal");
+  const text_signal =tlVerilogGenerator.variableDB_.getName(block.getFieldValue('signal'), Blockly.Variables.NAME_TYPE);
   const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
   // TODO: Assemble JavaScript into code variable.
   const code = "?" + dropdown_sig_type + text_signal + "\n" + statements_name;

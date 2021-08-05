@@ -3,6 +3,7 @@ import "./index.js";
 import Blockly from "blockly/core";
 import locale from "blockly/msg/en";
 import "blockly/blocks";
+import { ChakraProvider, Box, Flex, Spacer,  Grid } from "@chakra-ui/react";
 
 Blockly.setLocale(locale);
 
@@ -40,22 +41,18 @@ class BlocklyComponent extends React.Component {
   }
 
   render() {
-    const blocklyDiv_style = {
-      height: "100%",
-      width: "70%",
-      position: "absolute",
-      bottom: 0
+ 
       
-    };
+   
     const { children } = this.props;
 
     return (
       <>
-        <div ref={this.blocklyDiv} id="blocklyDiv" style={blocklyDiv_style} />
+        <Box ref={this.blocklyDiv} w="70%" h="100%" position="absolute" bottom="0"/>
         <xml
-          xmlns="https://developers.google.com/blockly/xml"
+
           is="blockly"
-          style={{ display: "none" }}
+          style={{ display: "none" ,height:"982%" }}
           ref={this.toolbox}
         >
           {children}
