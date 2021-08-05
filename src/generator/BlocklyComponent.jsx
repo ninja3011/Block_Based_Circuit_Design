@@ -16,7 +16,7 @@ class BlocklyComponent extends React.Component {
   componentDidMount() {
     const { blocklyDiv, toolbox, initialXml, children, ...rest } = this.props;
     this.primaryWorkspace = Blockly.inject(blocklyDiv.current, {
-      toolbox: toolbox.current,
+      toolbox: this.toolbox.current,
       ...rest,
     });
 
@@ -55,8 +55,8 @@ class BlocklyComponent extends React.Component {
         <xml
           xmlns="https://developers.google.com/blockly/xml"
           is="blockly"
-          style={{ display: "none" }}
-          ref={this.props.toolbox}
+          style={{ display: "none", height: "92%" }}
+          ref={this.toolbox}
         >
           {children}
         </xml>

@@ -52,7 +52,7 @@ class BlocklyComponent extends React.Component {
         <xml
 
           is="blockly"
-          style={{ display: "none" ,height:"982%" }}
+          style={{ display: "none" ,height:"91%" }}
           ref={this.toolbox}
         >
           {children}

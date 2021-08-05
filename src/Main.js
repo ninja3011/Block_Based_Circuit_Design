@@ -161,24 +161,11 @@ function Main() {
     element.click();
   };
 
-  const App_header_style = {
-    backgroundColor: "#282c34",
-    minHeight: "100vh",
-    width: "30%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "calc(12px + 1vmin)",
-    color: "black",
-    float: "right",
-    boxSizing: " border-box",
-    padding: " 1rem",
-  };
+
 
   return (
-    <ChakraProvider>
-      <Box w="70%" h="10" bg="blue.500">
+    <Box >
+      <Box w="70%" h="100%" bg="blue.500">
         <BlocklyComponent
           ref={simpleWorkspace}
           colour={"black"}
@@ -369,7 +356,7 @@ function Main() {
         <Textarea
          id="textarea" w="95%" variant="outline" value={value} size="bg" onChange={manualtext} />
       </Box>
-    </ChakraProvider>
+    </Box>
   );
 }
 

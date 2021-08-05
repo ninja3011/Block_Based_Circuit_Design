@@ -106,7 +106,6 @@ tlVerilogGenerator["stage_number"] = (block) => {
     block,
     "expression"
   );
-  // TODO: Assemble JavaScript into code variable.
   const code = "@" + number_stage_no + "\n" + statements_expression;
   return code;
 };
@@ -154,7 +153,6 @@ tlVerilogGenerator["when"] = (block) => {
   const dropdown_sig_type = block.getFieldValue("sig_type");
   const text_signal =tlVerilogGenerator.variableDB_.getName(block.getFieldValue('signal'), Blockly.Variables.NAME_TYPE);
   const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
-  // TODO: Assemble JavaScript into code variable.
   const code = "?" + dropdown_sig_type + text_signal + "\n" + statements_name;
   return code;
 };
