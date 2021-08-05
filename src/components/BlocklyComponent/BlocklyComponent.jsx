@@ -6,37 +6,63 @@ import "blockly/blocks";
 
 Blockly.setLocale(locale);
 
+class BlocklyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.blocklyDiv = React.createRef();
+    this.toolbox = React.createRef();
+  }
 
-function BlocklyComponent(props) {
-  const { blocklyDiv, toolbox, initialXml, children,ref, ...rest } = props;
+  componentDidMount() {
+    const { initialXml, children, ...rest } = this.props;
+    this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
+      toolbox: this.toolbox.current,
+      ...rest,
+    });
 
+    if (initialXml) {
+      Blockly.Xml.domToWorkspace(
+        Blockly.Xml.textToDom(initialXml),
+        this.primaryWorkspace
+      );
+    }
+  }
 
+  get workspace() {
+    return this.primaryWorkspace;
+  }
 
-  const blocklyDiv_style = {
-    height: "100%",
-    width: "70%",
-    position: "absolute",
-    bottom: 0
-    
-  };
+  setXml(xml) {
+    Blockly.Xml.domToWorkspace(
+      Blockly.Xml.textToDom(xml),
+      this.primaryWorkspace
+    );
+  }
 
-  return (
-    <>
-    <div
-      ref={ref}
-      id="blocklyDiv" style={blocklyDiv_style} />
-    <xml
-      xmlns="https://developers.google.com/blockly/xml"
-      is="blockly"
-      style={{ display: "none" }}
-      ref={toolbox}
-    >
-      {children}
-    </xml>
-  </>
-  )
+  render() {
+    const blocklyDiv_style = {
+      height: "100%",
+      width: "70%",
+      position: "absolute",
+      bottom: 0
+      
+    };
+    const { children } = this.props;
+
+    return (
+      <>
+        <div ref={this.blocklyDiv} id="blocklyDiv" style={blocklyDiv_style} />
+        <xml
+          xmlns="https://developers.google.com/blockly/xml"
+          is="blockly"
+          style={{ display: "none" }}
+          ref={this.toolbox}
+        >
+          {children}
+        </xml>
+      </>
+    );
+  }
 }
-
-
 
 export default BlocklyComponent;

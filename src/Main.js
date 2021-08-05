@@ -56,47 +56,11 @@ function Main() {
 
   // Reference to pass to blockly div
   const simpleWorkspace = createRef();
-  const blocklyDiv = createRef();
-  const toolbox = createRef();
+
   const fileInput = useRef(null);
 
   useEffect(() => {
     console.log("main mounted");
-    simpleWorkspace = Blockly.inject(blocklyDiv.current, {
-      toolbox: toolbox,
-    });
-
-    const initialXml= `
-    <xml xmlns="https://developers.google.com/blockly/xml">
-    <block type="tlv_version" id="i:~1Q]=gvSsiYTmS#{up" x="187" y="59">
-      <next>
-        <block type="sv" id="/|dHN{#pzZDmwGVlZ\`B*">
-          <statement name="NAME">
-            <block type="m4_makerchip_module" id="G?]7\`vFN-../Ls7tGwHj"></block>
-          </statement>
-          <next>
-            <block type="tlv" id="X-Z5@s%;fL^z?g0BCtNP">
-              <next>
-                <block type="sv" id="5zFC9udPQJSZocZ\/I)\[s">
-                  <statement name="NAME">
-                    <block type="endmodule" id="D\[3;mCF|Cx;DpAKz4SfM"></block>
-                  </statement>
-                </block>
-              </next>
-            </block>
-          </next>
-        </block>
-      </next>
-    </block>
-  </xml> 
-
-  `;  
-  if (initialXml) {
-    Blockly.Xml.domToWorkspace(
-      Blockly.Xml.textToDom(initialXml),
-      simpleWorkspace
-    );
-  }
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
@@ -144,7 +108,7 @@ function Main() {
   const upload = document.getElementById('fileInput')
   const files = upload.files;
       
-      if (files.length === 0) return;
+      if (files.length == 0) return;
     
       const file = files[0];
     
@@ -280,13 +244,11 @@ function Main() {
           </div>
           <textarea id="textarea" value={value} onChange={manualtext} />
         </div>
-      </header>  
+      </header>
 
       
       <BlocklyComponent
         ref={simpleWorkspace}
-        blocklyDiv ={blocklyDiv}
-        toolbox = {toolbox}
         colour={"black"}
         readOnly={false}
         trashcan={true}
@@ -321,7 +283,6 @@ function Main() {
           </next>
         </block>
       </xml> 
-
       `}
       > {/* End of BlocklyComponent */}
         {/* Creating the Toolbox  */}
