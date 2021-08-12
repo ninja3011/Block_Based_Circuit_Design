@@ -5,14 +5,14 @@ import React, { useRef, useEffect, useState } from "react";
 import { createRef } from "react";
 
 import {
-  ChakraProvider,
-  Box,
-  Flex,
-  Spacer,
-  Stack,
-  Grid,
-  Button,
-  Textarea
+    ChakraProvider,
+    Box,
+    Flex,
+    Spacer,
+    Stack,
+    Grid,
+    Button,
+    Textarea, useDisclosure
 } from "@chakra-ui/react";
 // Importing Blockly-Div Component
 import BlocklyComponent, {
@@ -44,6 +44,8 @@ import "./generator/Signals";
 import "./generator/Ternary";
 import "./generator/MultiPurpose";
 import Panel from "./components/Panel";
+import {getWarpVFileForCommit, warpVLatestSupportedCommit} from "warpv-configurator-chakra/src/utils/WarpVUtils";
+import {ConfigurationParameters} from "warpv-configurator-chakra/dist/translation/ConfigurationParameters";
 
 function Main() {
     const [configuratorGlobalSettings, setConfiguratorGlobalSettings] = useState({
@@ -69,7 +71,7 @@ function Main() {
     const [macrosForJson, setMacrosForJson] = useState()
     const [coreJson, setCoreJson] = useState(null)
     const [configuratorCustomProgramName, setConfiguratorCustomProgramName] = useState("my_custom")
-    const [programText, setProgramText] = useState(initialProgramText)
+    const [programText, setProgramText] = useState("THIS_IS_YOUR_TLV_STATE")
     const [formErrors, setFormErrors] = useState([]);
 
     const [userChangedStages, setUserChangedStages] = useState([])
