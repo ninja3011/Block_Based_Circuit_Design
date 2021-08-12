@@ -15,6 +15,8 @@ function Toolbox() {
             <Block type="tlv_version" />
             <Block type="sv" />
             <Block type="sv_plus" />
+            <Block type="always_comb" />
+
             <Block type="endmodule" />
             <Block type="include" />
           </Category>
@@ -25,6 +27,7 @@ function Toolbox() {
             </Block>
             <Block type="parenthesis" />
             <Block type="semicolon" />
+            <Block type="sig_type" />
           </Category>
           <Category name="Logic" colour="290">
             <Category name="Expressions">
@@ -40,6 +43,9 @@ function Toolbox() {
               <Block type="arithmetic_operator" />
               <Block type="retiming" />
               <Block type="dynamic_dropdown" />
+              <Block type="any" />
+              <Block type="retain" />
+
             </Category>
 
             <Category name="ternary">

@@ -28,6 +28,66 @@ Blockly.Blocks['part_general'] = {
   }
 };
 
+Blockly.Blocks['sig_type'] = {
+  init: function() {
+    this.jsonInit(
+      {
+        "type": "sig_type",
+        "message0": "%1",
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "type",
+            "options": [
+              [
+                "$",
+                "$"
+              ],
+              [
+                "*",
+                "*"
+              ],
+              [
+                "$$",
+                "$$"
+              ],
+              [
+                "**",
+                "**"
+              ],
+              [
+                "!$",
+                "!$"
+              ],
+              [
+                "!*",
+                "!*"
+              ],
+              [
+                "!$$",
+                "!$$"
+              ],
+              [
+                "!**",
+                "!**"
+              ]
+            ]
+          }
+        ],
+        "colour": 230,
+        "output": null,
+        "tooltip": "",
+        "helpUrl": ""
+      }
+    )}};
+    
+    tlVerilogGenerator["sig_type"] = (block) => {
+      const  dropdown_type = block.getFieldValue('type');
+      const code = dropdown_type;
+      return [code, tlVerilogGenerator.PRECEDENCE];
+
+    };
+
 tlVerilogGenerator["part_general"] = (block) => {
     const text_name = block.getFieldValue('NAME');
     const value_general = tlVerilogGenerator.valueToCode(block, 'general',  tlVerilogGenerator.PRECEDENCE);

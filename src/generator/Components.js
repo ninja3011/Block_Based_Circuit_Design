@@ -1,116 +1,142 @@
 import * as Blockly from "blockly/core";
 import tlVerilogGenerator from "./tl_verilog";
 
-
 const RANGE_MIN = 0;
 const RANGE_MAX = 3;
-Blockly.Blocks['signal'] = {
-  init: function() {
-	  
-	var inputsC = RANGE_MIN;  
-  this.appendValueInput('in1');
-	// this.appendValueInput('in2');
-	//         .appendField('foo')
-  this.appendDummyInput()
-  .appendField(new Blockly.FieldVariable("signal"), "signame");
 
-	
-
-  this.setOutput(true, null);
-	this.setColour(100);
-	this.setInputsInline(true);
-
-  },
-  
-    mutationToDom: function () {
-	    var container = Blockly.utils.xml.createElement('mutation');
-        container.setAttribute('inputCount', this.inputsC);
-        return container;
-    },
-	
- 
-    domToMutation: function (xmlElement) {
-		this.inputsC = parseInt(xmlElement.getAttribute('inputCount'), 10) || RANGE_MIN;
-        this.updateShape_();
-    },
-  
-    updateShape_: function() {
-		// this.removeInput('in1');
-		
-		if(this.inputsC == RANGE_MIN){
-			this.appendValueInput('in1')
-            .appendField(new Blockly.FieldImage(
-                "https://fonts.gstatic.com/s/i/materialiconsoutlined/add/v4/24px.svg?download=true",
-                15,
-                15,
-            "*", function() {
-            this.getSourceBlock().plus_();
-            } ));
-		}
-		else if(this.inputsC == RANGE_MAX){
-			this.appendValueInput('in1')
-			.appendField(new Blockly.FieldImage(
-                "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",
-                15,
-                15,
-            "*", function() {
-            this.getSourceBlock().minus_();
-            } ));
-		}
-		else{
-			this.appendValueInput('in1')
-			.appendField(new Blockly.FieldImage(
-                "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",
-                15,
-                15,
-            "*", function() {
-            this.getSourceBlock().minus_();
-            } ))
-            .appendField(new Blockly.FieldImage(
-                "https://fonts.gstatic.com/s/i/materialiconsoutlined/add/v4/24px.svg?download=true",
-                15,
-                15,
-            "*", function() {
-            this.getSourceBlock().plus_();
-            } ));
-		}
-		
-        var i = 2;
-        while (this.getInput('in' + i)) {
-           this.removeInput('in' + i);
-        i++;
-        }
-	  
-	    for (var x = 2; x <= this.inputsC; x++) {
-	       this.appendValueInput('in' + x)
-	      //  .appendField('foo')
-        }
-    },
- 
- 
-    plus_: function (){
-	    this.inputsC = (this.inputsC + 1);
-	    this.updateShape_();
-    },
-  
-    minus_: function (){
-	    this.inputsC = (this.inputsC - 1);
-	    this.updateShape_();
-    }
+const sig_text = (sig_inputs) => {
+  if(sig_inputs == 2) return "function";
+  else if (sig_inputs == 3) return "misc";
+  else return "misc.";
 };
 
 
+Blockly.Blocks["signal"] = {
+  init: function () {
+    var inputsC = RANGE_MIN;
+    this.appendDummyInput("in1");
+    // this.appendValueInput('in2');
+    //         .appendField('foo')
+    this.appendDummyInput().appendField(
+      new Blockly.FieldVariable("signal"),
+      "signame"
+    );
 
+    this.setOutput(true, null);
+    this.setColour(100);
+    this.setInputsInline(false);
+  },
+
+  mutationToDom: function () {
+    var container = Blockly.utils.xml.createElement("mutation");
+    container.setAttribute("inputCount", this.inputsC);
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    this.inputsC =
+      parseInt(xmlElement.getAttribute("inputCount"), 10) || RANGE_MIN;
+    this.updateShape_();
+  },
+
+  updateShape_: function () {
+    this.removeInput('in1');
+
+    if (this.inputsC == RANGE_MIN) {
+      this.appendDummyInput("in1").appendField(
+        new Blockly.FieldImage(
+          "https://fonts.gstatic.com/s/i/materialiconsoutlined/add/v4/24px.svg?download=true",
+          15,
+          15,
+          "*",
+          function () {
+            this.getSourceBlock().plus_();
+          }
+        )
+      );
+    } else if (this.inputsC == RANGE_MAX) {
+      this.appendValueInput("in1").appendField(
+        new Blockly.FieldImage(
+          "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",
+          15,
+          15,
+          "*",
+          function () {
+            this.getSourceBlock().minus_();
+          }
+        )
+      );
+      this.getInput('in1').appendField('retiming');
+    } else {
+      this.appendValueInput("in1")
+        .appendField(
+          new Blockly.FieldImage(
+            "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",
+            15,
+            15,
+            "*",
+            function () {
+              this.getSourceBlock().minus_();
+            }
+          )
+        )
+        .appendField(
+          new Blockly.FieldImage(
+            "https://fonts.gstatic.com/s/i/materialiconsoutlined/add/v4/24px.svg?download=true",
+            15,
+            15,
+            "*",
+            function () {
+              this.getSourceBlock().plus_();
+            }
+          )
+        );
+        this.getInput('in1').appendField('retiming');
+    }
+
+    var i = 2;
+    while (this.getInput("in" + i)) {
+      this.removeInput("in" + i);
+      i++;
+    }
+
+    for (var x = 2; x <= this.inputsC; x++) {
+      this.appendValueInput("in" + x).appendField(sig_text(x));
+      //  .appendField('foo')
+    }
+  },
+
+  plus_: function () {
+    this.inputsC = this.inputsC + 1;
+    this.updateShape_();
+  },
+
+  minus_: function () {
+    this.inputsC = this.inputsC - 1;
+    this.updateShape_();
+  },
+};
 
 tlVerilogGenerator["signal"] = (block) => {
-  const value_retiming = tlVerilogGenerator.valueToCode(
-    block,
-    "retiming",
-    tlVerilogGenerator.PRECEDENCE
-  );
+  // const value_retiming = tlVerilogGenerator.valueToCode(
+  //   block,
+  //   "retiming",
+  //   tlVerilogGenerator.PRECEDENCE
+  // );
+  let in1_block,in2_block,in3_block = '';
+  if(block.getInput('in1')){
+    in1_block = tlVerilogGenerator.valueToCode(block, 'in1',    tlVerilogGenerator.PRECEDENCE);
+  }
+  if(block.getInput('in2')){
+    in2_block = tlVerilogGenerator.valueToCode(block, 'in2',    tlVerilogGenerator.PRECEDENCE);
+  }
+  if(block.getInput('in3')){
+    in3_block = tlVerilogGenerator.valueToCode(block, 'in3',    tlVerilogGenerator.PRECEDENCE);
+  }
   const dropdown_type = block.getFieldValue("type");
   const text_signal = block.getFieldValue("signal");
-  const code = value_retiming + dropdown_type + text_signal;
+  // const code = value_retiming + dropdown_type + text_signal;
+  const code = in1_block+in2_block+in3_block+ text_signal;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, tlVerilogGenerator.PRECEDENCE];
 };
@@ -407,7 +433,7 @@ tlVerilogGenerator["retiming"] = (block) => {
   const retiming_value = block.getFieldValue("retimer_val");
   // TODO: Change ORDER_NONE to the correct strength.
 
-  const code = "";
+  let code = "";
 
   if (retiming_value == 0) {
     code = "<>" + retiming_value;
@@ -463,3 +489,33 @@ tlVerilogGenerator["parenthesis"] = (block) => {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, tlVerilogGenerator.PRECEDENCE];
 };
+
+Blockly.Blocks["any"] = {
+  init: function () {
+    this.jsonInit({
+      type: "any",
+      message0: "$ANY",
+      output: null,
+      colour: 330,
+      tooltip: "",
+      helpUrl: "",
+    });
+  },
+};
+
+tlVerilogGenerator["any"] = (block) => "$ANY ";
+
+Blockly.Blocks["retain"] = {
+  init: function () {
+    this.jsonInit({
+      type: "retain",
+      message0: "$RETAIN",
+      output: null,
+      colour: 200,
+      tooltip: "",
+      helpUrl: "",
+    });
+  },
+};
+
+tlVerilogGenerator["retain"] = (block) => "$RETAIN ";

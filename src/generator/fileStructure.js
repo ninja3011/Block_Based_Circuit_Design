@@ -150,3 +150,34 @@ tlVerilogGenerator["sv_plus"] = (block) => {
   const code = "\\SV_plus\n" + statements_sv;
   return code;
 };
+
+
+Blockly.Blocks["always_comb"] = {
+  init: function () {
+    this.jsonInit({
+      type: "always_comb",
+      message0: "\\always_comb %1 %2",
+      args0: [
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "input_statement",
+          name: "NAME",
+        },
+      ],
+      previousStatement: null,
+      nextStatement: null,
+      colour: 230,
+      tooltip: "",
+      helpUrl: "",
+    });
+  },
+};
+
+tlVerilogGenerator["always_comb"] = (block) => {
+  const statements_name = tlVerilogGenerator.statementToCode(block, "NAME");
+  // TODO: Assemble JavaScript into code variable.
+  const code = "\\always_comb\n" + statements_name;
+  return code;
+};
