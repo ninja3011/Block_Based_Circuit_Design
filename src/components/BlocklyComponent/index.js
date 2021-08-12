@@ -25,4 +25,3 @@ function Category({children, ...rest}) {
 
 export { Block, Category, Value, Field, Shadow }
 
-<Shadow>ygygy</Shadow>

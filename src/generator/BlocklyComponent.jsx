@@ -52,6 +52,7 @@ class BlocklyComponent extends React.Component {
     return (
       <>
         <div ref={this.props.blocklyDiv} id="blocklyDiv" style={blocklyDiv_style} />
+
         <xml
           xmlns="https://developers.google.com/blockly/xml"
           is="blockly"

@@ -26,7 +26,7 @@ import BlocklyComponent, {
 // Run npm --save install blockly
 import Blockly, { CONNECTING_SNAP_RADIUS } from "blockly";
 
-
+import Toolbox from "./components/toolbox"
 
 // Importing the custom generator
 import tlVerilogGenerator from "./generator/tl_verilog.js";
@@ -43,15 +43,16 @@ import "./generator/Sequential";
 import "./generator/Signals";
 import "./generator/Ternary";
 import "./generator/MultiPurpose";
+import Panel from "./components/Panel";
 
 function Main() {
   // value: the code currently being displayed in the textarea
   // copysuccess: to tell whether the copyCodeToClipboard has been executed
   // uploadFile to see if file has been uploaded by a user
 
-  const [value, setValue] = useState("");
-  const [copySuccess, setCopySuccess] = useState(false);
-  const [uploadFile, setUploadFile] = useState(false);
+
+
+
 
   // Reference to pass to blockly div
   const simpleWorkspace = createRef();
@@ -63,103 +64,7 @@ function Main() {
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
-  const handleConvertToTLV = () => {
-    const code = tlVerilogGenerator.workspaceToCode(
-      simpleWorkspace.current.workspace
-    );
-    console.log(simpleWorkspace.current.workspace);
-    setValue(code);
-  };
-
-  // Copy to Clipboard Button, copies whatever text is showing in the textarea
-  const handleCopyCodeToClipboard = () => {
-    const el = document.getElementById("textarea");
-    el.select();
-    document.execCommand("copy");
-    setCopySuccess(true);
-    try {
-      const status = document.execCommand("copy");
-      if (!status) {
-        console.error("Cannot copy text");
-      } else {
-        console.log("The text is now on the clipboard");
-      }
-    } catch (err) {
-      console.log("Unable to copy.");
-    }
-  };
-
-  // Save Workspace Button, saves whatever is in the workspace to a file called program in the local storage
-  // after converting it to XML and displaying it to the textarea
-  const handleSaveToStorage = () => {
-    const xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    const domToPretty = Blockly.Xml.domToPrettyText(xml);
-    window.localStorage.setItem("myProgram", domToPretty);
-    setValue(domToPretty);
-    console.log("pretty text:", domToPretty);
-  };
-
-  // File upload button so that the user can upload a XML file to the textarea
-
-  const handleUploadFile = () => {
-    const upload = document.getElementById("fileInput");
-    const files = upload.files;
-
-    if (files.length == 0) return;
-
-    const file = files[0];
-
-    let reader = new FileReader();
-    console.log(upload, file);
-    reader.onload = (e) => {
-      const file = e.target.result;
-      const program = file;
-      console.log(simpleWorkspace.current.workspace);
-      console.log("program: ", program, simpleWorkspace.current.workspace);
-      setValue(program);
-    };
-
-    reader.onerror = (e) => alert(e.target.error.name);
-
-    reader.readAsText(file);
-  };
-
-  // Recover From Storage Button, it extracts the file program from local storage and then converts that XML to Blockly Blocks
-  const handleRecoverFromStorage = () => {
-    const program = window.localStorage.getItem("myProgram");
-    simpleWorkspace.current.workspace.clear();
-    const textToDom = Blockly.Xml.textToDom(program);
-    Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-    setValue(textToDom);
-    console.log("textToDom:", textToDom);
-  };
-
-  // Recover From Code Button, it basically takes the code from the textarea and converts it to blockly blocks
-  const handleRecoverFromCode = () => {
-    const program = value;
-    console.log(simpleWorkspace.current.workspace);
-    simpleWorkspace.current.workspace.clear();
-    const textToDom = Blockly.Xml.textToDom(program);
-    Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-    setValue(textToDom);
-    document.getElementById("textarea").value = program;
-    console.log("textToDom:", textToDom);
-  };
-
-  // This function is written so the user can make edits in the textarea manually
-  const manualtext = (event) => {
-    setValue(event.target.value);
-  };
-
-  // Download Button, creates an prompt to ask for filename(with extension) and then downloads the file.
-  const handleDownload = () => {
-    const element = document.createElement("a");
-    const file = new Blob([value], { type: "text/plain" });
-    element.href = URL.createObjectURL(file);
-    element.download = prompt("file name?");
-    document.body.appendChild(element); // Required for this to work in FireFox
-    element.click();
-  };
+  
 
 
 
@@ -206,156 +111,17 @@ function Main() {
           {" "}
           {/* End of BlocklyComponent */}
           {/* Creating the Toolbox  */}
-          <Category name="File Structure" colour="199">
-            <Block type="tlv" />
-            <Block type="tlv_version" />
-            <Block type="sv" />
-            <Block type="sv_plus" />
-            <Block type="endmodule" />
-            <Block type="include" />
-          </Category>
-          <Category name="Multi Purpose" colour="100">
-            <Block type="part_general" />
-            <Block type="TLV_CODE_BLOCK">
-              <Field name="FIELDNAME"></Field>
-            </Block>
-            <Block type="parenthesis" />
-            <Block type="semicolon" />
-          </Category>
-          <Category name="Logic" colour="290">
-            <Category name="Expressions">
-              <Block type="expression" />
-            </Category>
-            <Category name="Sequential">
-              <Block type="always_ff" />
-            </Category>
-            <Category name="Components">
-              <Block type="signal" />
-              <Block type="logical_operator" />
-              <Block type="comparison_operator" />
-              <Block type="arithmetic_operator" />
-              <Block type="retiming" />
-              <Block type="dynamic_dropdown" />
-            </Category>
-
-            <Category name="ternary">
-              <Block type="ternary_shell" />
-              <Block type="ternary_fields" />
-            </Category>
-          </Category>
-          <Category name="TLV" colour="160">
-            <Category name="Scopes">
-              <Block type="pipeline" />
-              <Block type="stage_number" />
-              <Block type="when" />
-              <Block type="hierarchy" />
-            </Category>
-          </Category>
-          <Category name="m4 Modules" colour="20">
-            <Block type="m4_makerchip_module" />
-            <Block type="m4plus" />
-            <Block type="m4asm" />
-            <Block type="m4_general" />
-
-            <Block type="m4_include_lib" />
-          </Category>
-          <Category name="Printing" colour="300">
-            <Block type="display" />
-          </Category>
-          <Category name="Signals" colour="200">
-            <Category name="Signal Generator" custom="VARIABLE">
-              <Block type="variables_get" />
-              <Block type="variables_set" />
-            </Category>
-
-            <Category name="$pipesignals">
-              <Block type="pipesignal" />
-            </Category>
-            <Category name="$StateSignals">
-              <Block type="statesignal" />
-            </Category>
-            <Category name="$$assigned_signals">
-              <Block type="assignedsignal" />
-            </Category>
-            <Category name="$$AssignedStateSignals">
-              <Block type="assignedstatesignal" />
-            </Category>
-            <Category name="*SV_signals">
-              <Block type="svsignal" />
-            </Category>
-            <Category name="**SV_types">
-              <Block type="svtype" />
-            </Category>
-          </Category>
-          <Category name="Functions" custom="PROCEDURE" colour="134"></Category>
+          {console.log(Toolbox)}
+          <Toolbox />
+        
+        
         </BlocklyComponent>
       </Box>
       <Spacer></Spacer>
-      <Box as="div" pl="72%"bg="white">
-        <Stack spacing={1} direction="row">
-          <Button
-            
-            colorScheme="teal"
-            variant="solid"
-            onClick={handleConvertToTLV}
-          >
-            Convert to TLV
-          </Button>
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            onClick={handleCopyCodeToClipboard}
-          >
-            Copy to Clipboard
-          </Button>
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            onClick={handleSaveToStorage}
-          >
-            Save To Storage
-          </Button>
-          </Stack>
-          <Stack spacing={1} direction="row">
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            onClick={handleRecoverFromStorage}
-          >
-            Recover From Storage
-          </Button>
-        </Stack>
-        <Stack spacing={2} direction="row" align="center">
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            onClick={handleRecoverFromCode}
-          >
-            Recover from code
-          </Button>
-
-          {console.log(fileInput)}
-          <Button colorScheme="teal" variant="solid" onClick={handleDownload}>
-            Download
-          </Button>
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            onClick={() => document.getElementById("fileInput").click()}
-          >
-            Upload File
-          </Button>
-        </Stack>
-        <input
-          type="file"
-          style={{ visibility: "hidden" }}
-          id="fileInput"
-          onChange={(event) => handleUploadFile()}
-        ></input>
-
-        <Textarea
-         id="textarea" w="95%" variant="outline" value={value} size="bg" onChange={manualtext} />
-      </Box>
+      <Panel simpleWorkspace={simpleWorkspace}
+             tlVerilogGenerator={tlVerilogGenerator}/>
+     
+      
     </Box>
   );
 }

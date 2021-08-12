@@ -17,7 +17,6 @@ Blockly.Blocks['signal'] = {
 	
 
   this.setOutput(true, null);
-  this.setOutput(true, 'signal');
 	this.setColour(100);
 	this.setInputsInline(true);
 
@@ -36,7 +35,7 @@ Blockly.Blocks['signal'] = {
     },
   
     updateShape_: function() {
-		this.removeInput('in1');
+		// this.removeInput('in1');
 		
 		if(this.inputsC == RANGE_MIN){
 			this.appendValueInput('in1')

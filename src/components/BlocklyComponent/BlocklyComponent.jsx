@@ -30,6 +30,7 @@ class BlocklyComponent extends React.Component {
   }
 
   get workspace() {
+
     return this.primaryWorkspace;
   }
 
@@ -38,7 +39,7 @@ class BlocklyComponent extends React.Component {
       Blockly.Xml.textToDom(xml),
       this.primaryWorkspace
     );
-  }
+    }
 
   render() {
  
@@ -49,11 +50,16 @@ class BlocklyComponent extends React.Component {
     return (
       <>
         <Box ref={this.blocklyDiv} w="70%" h="100%" position="absolute" bottom="0"/>
+
         <xml
 
           is="blockly"
-          style={{ display: "none" ,height:"91%" }}
+          style={{ display: "none" ,height:"91%", overflow: 'hidden',  scrollbar: 'none'
+        }}
           ref={this.toolbox}
+          move={{
+            scrollbars: false
+          }}
         >
           {children}
         </xml>
