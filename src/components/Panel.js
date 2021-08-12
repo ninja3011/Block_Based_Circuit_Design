@@ -126,7 +126,7 @@ function Panel(props) {
         <ChakraProvider>
             
       <Box as="div" pl="72%"bg="white">
-        <Stack spacing={1} direction="row">
+        <Stack spacing={1} direction="row" pt = '2%'>
           <Button
             
             colorScheme="teal"
@@ -150,7 +150,7 @@ function Panel(props) {
             Save To Storage
           </Button>
           </Stack>
-          <Stack spacing={1} direction="row">
+          <Stack spacing={1} direction="row" pt='2%'> 
           <Button
             colorScheme="teal"
             variant="solid"
@@ -166,7 +166,7 @@ function Panel(props) {
               Convert to JS
           </Button>
         </Stack>
-        <Stack spacing={2} direction="row" align="center">
+        <Stack spacing={2} direction="row" align="center"  pt='2%'>
           <Button
             colorScheme="teal"
             variant="solid"
