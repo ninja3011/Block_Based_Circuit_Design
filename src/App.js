@@ -14,7 +14,6 @@ function App() {
   const blocklyDiv = createRef();
   const toolbox = createRef();
 
-
   const [value, setValue] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
 

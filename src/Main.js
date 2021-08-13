@@ -5,14 +5,14 @@ import React, { useRef, useEffect, useState } from "react";
 import { createRef } from "react";
 
 import {
-  ChakraProvider,
-  Box,
-  Flex,
-  Spacer,
-  Stack,
-  Grid,
-  Button,
-  Textarea,
+    ChakraProvider,
+    Box,
+    Flex,
+    Spacer,
+    Stack,
+    Grid,
+    Button,
+    Textarea, useDisclosure
 } from "@chakra-ui/react";
 // Importing Blockly-Div Component
 import BlocklyComponent, {
@@ -44,8 +44,52 @@ import "./generator/Signals";
 import "./generator/Ternary";
 import "./generator/MultiPurpose";
 import Panel from "./components/Panel";
+import {getWarpVFileForCommit, warpVLatestSupportedCommit} from "warpv-configurator-chakra/src/utils/WarpVUtils";
+import {ConfigurationParameters} from "warpv-configurator-chakra/dist/translation/ConfigurationParameters";
 
-function Main(props) {
+function Main() {
+    const [configuratorGlobalSettings, setConfiguratorGlobalSettings] = useState({
+        settings: getInitialSettings(),
+        coreJson: null,
+        generalSettings: {
+            warpVVersion: getWarpVFileForCommit(warpVLatestSupportedCommit),
+            isa: 'RISCV',
+            isaExtensions: [],
+            depth: 4,
+            formattingSettings: [
+                "--bestsv",
+                "--noline",
+                "--fmtNoSource"
+            ],
+            customProgramEnabled: false
+        },
+        needsPipelineInit: true
+    })
+
+    const [sVForJson, setSVForJson] = useState()
+    const [tlvForJson, setTlvForJson] = useState()
+    const [macrosForJson, setMacrosForJson] = useState()
+    const [coreJson, setCoreJson] = useState(null)
+    const [configuratorCustomProgramName, setConfiguratorCustomProgramName] = useState("my_custom")
+    const [programText, setProgramText] = useState("THIS_IS_YOUR_TLV_STATE")
+    const [formErrors, setFormErrors] = useState([]);
+
+    const [userChangedStages, setUserChangedStages] = useState([])
+    const [pipelineDefaultDepth, setPipelineDefaultDepth] = useState()
+    const [makerchipOpening, setMakerchipOpening] = useState(false)
+    const [downloadingCode, setDownloadingCode] = useState(false)
+    const detailsComponentRef = createRef()
+    const [selectedFile, setSelectedFile] = useState("m4")
+    const openInMakerchipDisclosure = useDisclosure()
+    const [openInMakerchipUrl, setOpenInMakerchipUrl] = useState()
+
+    function getInitialSettings() {
+        const settings = {
+            cores: 1
+        }
+        ConfigurationParameters.forEach(param => settings[param.jsonKey] = param.defaultValue)
+        return settings
+    }
   // value: the code currently being displayed in the textarea
   // copysuccess: to tell whether the copyCodeToClipboard has been executed
   // uploadFile to see if file has been uploaded by a user

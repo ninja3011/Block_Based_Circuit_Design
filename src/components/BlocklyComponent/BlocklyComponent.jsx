@@ -7,71 +7,26 @@ import { ChakraProvider, Box, Flex, Spacer,  Grid } from "@chakra-ui/react";
 
 Blockly.setLocale(locale);
 
-class BlocklyComponent extends React.Component {
-  constructor(props) {
-    super(props);
+import React from 'react'
 
-  }
-
-  componentDidMount() {
-    const {
-      blocklyDiv,
-      toolbox,
-      initialXml, 
-      children,
-      ...rest 
-    } = this.props;
-
+function BlocklyComponent(props) {
+  const { 
+    blocklyDiv,
+    toolbox,
+    initialXml, 
+    children,
+     ...rest } = props;
+  useEffect(() => {
+    
     this.primaryWorkspace = Blockly.inject(blocklyDiv.current, {
       toolbox: toolbox.current,
       ...rest,
-    });
-
-    if (initialXml) {
-      Blockly.Xml.domToWorkspace(
-        Blockly.Xml.textToDom(initialXml),
-        this.primaryWorkspace
-      );
-    }
-  }
-
-  get workspace() {
-
-    return this.primaryWorkspace;
-  }
-
-  setXml(xml) {
-    Blockly.Xml.domToWorkspace(
-      Blockly.Xml.textToDom(xml),
-      this.primaryWorkspace
-    );
-    }
-
-  render() {
- 
+  }, [])
+  return (
+    <div>
       
-   
-    const { children } = this.props;
-
-    return (
-      <>
-        <Box ref={this.blocklyDiv} w="70%" h="100%" position="absolute" bottom="0"/>
-
-        <xml
-
-          is="blockly"
-          style={{ display: "none" ,height:"91%", overflow: 'hidden',  scrollbar: 'none'
-        }}
-          ref={this.toolbox}
-          move={{
-            scrollbars: false
-          }}
-        >
-          {children}
-        </xml>
-      </>
-    );
-  }
+    </div>
+  )
 }
 
-export default BlocklyComponent;
+export default BlocklyComponent
