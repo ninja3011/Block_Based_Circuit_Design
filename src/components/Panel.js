@@ -12,9 +12,16 @@ import {
 import Blockly from "blockly"
 function Panel(props) {
 
-    const [value, setValue] = useState("");
-    const [copySuccess, setCopySuccess] = useState(false);
-    const {simpleWorkspace, tlVerilogGenerator} = props;
+  const {
+    simpleWorkspace,
+    blocklyDiv,
+    tlVerilogGenerator,
+    toolbox,
+    value,
+    setValue,
+    copySuccess,
+    setCopySuccess,
+  } = props;
 
     const handleConvertToTLV = () => {
         const code = tlVerilogGenerator.workspaceToCode(

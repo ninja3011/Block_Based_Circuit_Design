@@ -12,7 +12,7 @@ import {
   Stack,
   Grid,
   Button,
-  Textarea
+  Textarea,
 } from "@chakra-ui/react";
 // Importing Blockly-Div Component
 import BlocklyComponent, {
@@ -26,7 +26,7 @@ import BlocklyComponent, {
 // Run npm --save install blockly
 import Blockly, { CONNECTING_SNAP_RADIUS } from "blockly";
 
-import Toolbox from "./components/toolbox"
+import Toolbox from "./components/toolbox";
 
 // Importing the custom generator
 import tlVerilogGenerator from "./generator/tl_verilog.js";
@@ -45,34 +45,36 @@ import "./generator/Ternary";
 import "./generator/MultiPurpose";
 import Panel from "./components/Panel";
 
-function Main() {
+function Main(props) {
   // value: the code currently being displayed in the textarea
   // copysuccess: to tell whether the copyCodeToClipboard has been executed
   // uploadFile to see if file has been uploaded by a user
 
-
-
-
+  const {
+    simpleWorkspace,
+    blocklyDiv,
+    toolbox,
+    value,
+    setValue,
+    copySuccess,
+    setCopySuccess,
+  } = props;
 
   // Reference to pass to blockly div
-  const simpleWorkspace = createRef();
-
-  const fileInput = useRef(null);
 
   useEffect(() => {
     console.log("main mounted");
   }, []);
 
   // Convert to TLV Button, extracts TLV code from blocks and displays to textarea
-  
-
-
 
   return (
-    <Box >
+    <Box>
       <Box w="70%" h="100%" bg="blue.500">
         <BlocklyComponent
           ref={simpleWorkspace}
+          blocklyDiv={blocklyDiv}
+          toolbox={toolbox}
           colour={"black"}
           readOnly={false}
           trashcan={true}
@@ -113,15 +115,18 @@ function Main() {
           {/* Creating the Toolbox  */}
           {console.log(Toolbox)}
           <Toolbox />
-        
-        
         </BlocklyComponent>
       </Box>
       <Spacer></Spacer>
-      <Panel simpleWorkspace={simpleWorkspace}
-             tlVerilogGenerator={tlVerilogGenerator}/>
-     
-      
+      <Panel
+        simpleWorkspace={simpleWorkspace}
+        tlVerilogGenerator={tlVerilogGenerator}
+        value={value}
+        setValue={setValue}
+        copySuccess={copySuccess}
+        setCopySuccess={setCopySuccess}
+      />
+
     </Box>
   );
 }

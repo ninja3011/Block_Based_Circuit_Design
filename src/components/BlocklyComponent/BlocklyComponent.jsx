@@ -10,14 +10,20 @@ Blockly.setLocale(locale);
 class BlocklyComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.blocklyDiv = React.createRef();
-    this.toolbox = React.createRef();
+
   }
 
   componentDidMount() {
-    const { initialXml, children, ...rest } = this.props;
-    this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
-      toolbox: this.toolbox.current,
+    const {
+      blocklyDiv,
+      toolbox,
+      initialXml, 
+      children,
+      ...rest 
+    } = this.props;
+
+    this.primaryWorkspace = Blockly.inject(blocklyDiv.current, {
+      toolbox: toolbox.current,
       ...rest,
     });
 
