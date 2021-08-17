@@ -3,11 +3,14 @@ import "./index.js";
 import Blockly from "blockly/core";
 import locale from "blockly/msg/en";
 import "blockly/blocks";
-import { ChakraProvider, Box, Flex, Spacer,  Grid } from "@chakra-ui/react";
+import {  Box} from "@chakra-ui/react";
 
 Blockly.setLocale(locale);
 
 class BlocklyComponent extends React.Component {
+
+  
+
   constructor(props) {
     super(props);
     this.blocklyDiv = React.createRef();
@@ -20,7 +23,6 @@ class BlocklyComponent extends React.Component {
       toolbox: this.toolbox.current,
       ...rest,
     });
-
     if (initialXml) {
       Blockly.Xml.domToWorkspace(
         Blockly.Xml.textToDom(initialXml),
