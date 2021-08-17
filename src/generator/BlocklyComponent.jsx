@@ -3,21 +3,16 @@ import "./index.js";
 import Blockly from "blockly/core";
 import locale from "blockly/msg/en";
 import "blockly/blocks";
-import { ChakraProvider, Box, Flex, Spacer,  Grid } from "@chakra-ui/react";
 
 Blockly.setLocale(locale);
 
 class BlocklyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.blocklyDiv = React.createRef();
-    this.toolbox = React.createRef();
-  }
+
 
   componentDidMount() {
-    const { initialXml, children, ...rest } = this.props;
-    this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
-      toolbox: this.toolbox.current,
+    const {  blocklyDivRef, toolboxref, initialXml, children, ...rest } = this.props;
+    this.primaryWorkspace = Blockly.inject(blocklyDivRef.current, {
+      toolbox: toolboxref.current,
       ...rest,
     });
 
@@ -30,7 +25,6 @@ class BlocklyComponent extends React.Component {
   }
 
   get workspace() {
-
     return this.primaryWorkspace;
   }
 
@@ -39,27 +33,27 @@ class BlocklyComponent extends React.Component {
       Blockly.Xml.textToDom(xml),
       this.primaryWorkspace
     );
-    }
+  }
 
   render() {
- 
+    const blocklyDiv_style = {
+      height: "100%",
+      width: "70%",
+      position: "absolute",
+      bottom: 0
       
-   
+    };
     const { children } = this.props;
 
     return (
       <>
-        <Box ref={this.blocklyDiv} w="70%" h="100%" position="absolute" bottom="0"/>
+        <div ref={this.props.blocklyDiv} id="blocklyDiv" style={blocklyDiv_style} />
 
         <xml
-
+          xmlns="https://developers.google.com/blockly/xml"
           is="blockly"
-          style={{ display: "none" ,height:"91%", overflow: 'hidden',  scrollbar: 'none'
-        }}
+          style={{ display: "none", height: "92%" }}
           ref={this.toolbox}
-          move={{
-            scrollbars: false
-          }}
         >
           {children}
         </xml>

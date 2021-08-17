@@ -2,40 +2,45 @@ import React, { useRef, useEffect, useState } from "react";
 import {
     ChakraProvider,
     Box,
-    Flex,
-    Spacer,
     Stack,
-    Grid,
     Button,
     Textarea
   } from "@chakra-ui/react";
 import Blockly from "blockly"
-function Panel(props) {
 
-  const {
-    simpleWorkspace,
-    blocklyDiv,
-    tlVerilogGenerator,
-    toolbox,
-    value,
-    setValue,
-    copySuccess,
-    setCopySuccess,
-  } = props;
 
+
+
+const Panel = (props) => {
+
+
+    const {simpleWorkspace,
+      tlVerilogGenerator,
+      programText,
+      onSetProgramText,
+      copySuccess,
+      setCopySuccess,
+      makerchipOpening,
+      openInMakerchipUrl,
+      setOpenInMakerchipUrl,
+      setMakerchipOpening  } = props;
     const handleConvertToTLV = () => {
         const code = tlVerilogGenerator.workspaceToCode(
           simpleWorkspace.current.workspace
         );
-        console.log(simpleWorkspace.current.workspace);
-        setValue(code);
+        console.log('Panel, l23', code, simpleWorkspace,
+        tlVerilogGenerator,
+        programText,
+        onSetProgramText);
+        console.log(props);  
+        onSetProgramText(code);
       };
       const handleConvertToJS = () => {
         const code = Blockly.JavaScript.workspaceToCode(
           simpleWorkspace.current.workspace
         );
         console.log(simpleWorkspace.current.workspace);
-        setValue(code);
+        onSetProgramText(code);
       };
       
     
@@ -63,7 +68,7 @@ function Panel(props) {
         const xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
         const domToPretty = Blockly.Xml.domToPrettyText(xml);
         window.localStorage.setItem("myProgram", domToPretty);
-        setValue(domToPretty);
+        onSetProgramText(domToPretty);
         console.log("pretty text:", domToPretty);
       };
     
@@ -84,7 +89,7 @@ function Panel(props) {
           const program = file;
           console.log(simpleWorkspace.current.workspace);
           console.log("program: ", program, simpleWorkspace.current.workspace);
-          setValue(program);
+          onSetProgramText(program);
         };
     
         reader.onerror = (e) => alert(e.target.error.name);
@@ -98,36 +103,67 @@ function Panel(props) {
         simpleWorkspace.current.workspace.clear();
         const textToDom = Blockly.Xml.textToDom(program);
         Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-        setValue(textToDom);
+        onSetProgramText(textToDom);
         console.log("textToDom:", textToDom);
       };
     
       // Recover From Code Button, it basically takes the code from the textarea and converts it to blockly blocks
       const handleRecoverFromCode = () => {
-        const program = value;
+        const program = programText;
         console.log(simpleWorkspace.current.workspace);
         simpleWorkspace.current.workspace.clear();
         const textToDom = Blockly.Xml.textToDom(program);
         Blockly.Xml.domToWorkspace(simpleWorkspace.current.workspace, textToDom);
-        setValue(textToDom);
+        onSetProgramText(textToDom);
         document.getElementById("textarea").value = program;
         console.log("textToDom:", textToDom);
       };
     
       // This function is written so the user can make edits in the textarea manually
       const manualtext = (event) => {
-        setValue(event.target.value);
+        onSetProgramText(event.target.value);
       };
     
       // Download Button, creates an prompt to ask for filename(with extension) and then downloads the file.
       const handleDownload = () => {
         const element = document.createElement("a");
-        const file = new Blob([value], { type: "text/plain" });
+        const file = new Blob([programText], { type: "text/plain" });
         element.href = URL.createObjectURL(file);
         element.download = prompt("file name?");
         document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
       };
+      const handleOpenInMakerchipButtonClicked = () => {
+        {
+          setMakerchipOpening(true)
+          const formBody = new URLSearchParams();
+          formBody.append("source", programText);
+          fetch(
+              "https://makerchip.com/project/public",
+              {
+                  method: 'POST',
+                  body: formBody,
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  }
+              }
+          )
+              .then(resp => resp.json())
+              .then(json => {
+                  const url = json.url
+                  openInNewTabOrFallBack(`https://makerchip.com${url}`, "_blank")
+                  setMakerchipOpening(false)
+              })
+      }
+      }
+
+      const  openInNewTabOrFallBack = (urlToRedirectTo, target) => {
+        const newWindow = window.open(urlToRedirectTo, target)
+    
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            // setDisclosureAndUrl(urlToRedirectTo)
+        } // fallback
+    }
 
     return (
         <ChakraProvider>
@@ -163,7 +199,7 @@ function Panel(props) {
             variant="solid"
             onClick={handleRecoverFromStorage}
           >
-            Recover From Storage
+            Storage Recover 
           </Button>
           <Button
                       colorScheme="teal"
@@ -171,6 +207,13 @@ function Panel(props) {
                       onClick={handleConvertToJS}
           >
               Convert to JS
+          </Button>
+          <Button
+                      colorScheme="teal"
+                      variant="solid"
+                      onClick={handleOpenInMakerchipButtonClicked}
+          >
+            Open In Makerchip
           </Button>
         </Stack>
         <Stack spacing={2} direction="row" align="center"  pt='2%'>
@@ -202,7 +245,7 @@ function Panel(props) {
         ></input>
 
         <Textarea
-         id="textarea" w="95%" h ="700px" variant="outline" value={value} size="bg" onChange={manualtext} />
+         id="textarea" w="95%" h ="700px" variant="outline" value={programText} size="bg" onChange={manualtext} />
       </Box>
       </ChakraProvider>
     )

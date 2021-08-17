@@ -44,5 +44,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.14.5"
+  },
+  
+    "presets": [
+      [
+        "@babel/preset-react",
+        {
+          "pragma": "dom", 
+          "pragmaFrag": "DomFrag",
+          "throwIfNamespace": false, 
+          "runtime": "classic" 
+         
+        }
+      ]
+    ]
+  
 }

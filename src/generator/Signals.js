@@ -16,14 +16,14 @@ Blockly.Blocks["variables_get"] = {
     this.appendDummyInput("in1");
     // this.appendValueInput('in2');
     //         .appendField('foo')
-    this.appendDummyInput().appendField(
+    this.appendDummyInput('var').appendField(
       new Blockly.FieldVariable("signal"),
       "signame"
     );
 
     this.setOutput(true, null);
     this.setColour(100);
-    this.setInputsInline(false);
+    this.setInputsInline(true);
   },
 
   mutationToDom: function () {
@@ -54,6 +54,17 @@ Blockly.Blocks["variables_get"] = {
         )
       );
     } else if (this.inputsC == RANGE_MAX) {
+      this.removeInput("var");
+      this.removeInput("in2");
+
+      this.appendValueInput("in" + 2).appendField(sig_text(2));
+      this.appendValueInput("in" + 3).appendField(sig_text(3));
+
+      this.appendDummyInput('var').appendField(
+        new Blockly.FieldVariable("signal"),
+        "signame"
+      );
+      
       this.appendValueInput("in1").appendField(
         new Blockly.FieldImage(
           "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",
@@ -128,12 +139,18 @@ tlVerilogGenerator["variables_get"] = (block) => {
       tlVerilogGenerator.PRECEDENCE
     );
   }
+  else{
+    in1_block = "";
+  }
   if (block.getInput("in2")) {
     in2_block = tlVerilogGenerator.valueToCode(
       block,
       "in2",
       tlVerilogGenerator.PRECEDENCE
     );
+  }
+  else{
+    in2_block = "";
   }
   if (block.getInput("in3")) {
     in3_block = tlVerilogGenerator.valueToCode(
@@ -142,12 +159,23 @@ tlVerilogGenerator["variables_get"] = (block) => {
       tlVerilogGenerator.PRECEDENCE
     );
   }
+  else{
+    in3_block = "";
+  }
+  
+  console.log('-------------\n',in1_block , in2_block , in3_block )
 
   let text_signal =
   tlVerilogGenerator.variableDB_.getName(block.getFieldValue("signame"),  Blockly.Variables.NAME_TYPE);
-
-  const code = in1_block + in2_block + in3_block + text_signal;
-
+  let code = "";
+  if((in1_block + in2_block + in3_block)==undefined){
+    code =  text_signal;
+  }
+  else{
+    code = in1_block + in2_block + in3_block +text_signal;
+  }
+   
+  console.log(code)
   return [code, tlVerilogGenerator.PRECEDENCE];
 };
 
