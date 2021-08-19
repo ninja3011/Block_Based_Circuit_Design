@@ -42,7 +42,7 @@ function Toolbox() {
               <Block type="comparison_operator" />
               <Block type="arithmetic_operator" />
               <Block type="retiming" />
-              <Block type="dynamic_dropdown" />
+              {/* <Block type="dynamic_dropdown" /> */}
               <Block type="any" />
               <Block type="retain" />
 

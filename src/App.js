@@ -58,7 +58,7 @@ const [tlvForJson, setTlvForJson] = useState()
 const [macrosForJson, setMacrosForJson] = useState()
 const [coreJson, setCoreJson] = useState(null)
 const [configuratorCustomProgramName, setConfiguratorCustomProgramName] = useState("my_custom")
-const [programText, setProgramText] = useState("THIS_IS_YOUR_TLV_STATE")
+const [programText, setProgramText] = useState("")
 const [formErrors, setFormErrors] = useState([]);
 
 const [userChangedStages, setUserChangedStages] = useState([])
