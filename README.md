@@ -1,70 +1,133 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Block Based Circuit Design
 
-In the project directory, you can run:
+This summer I mentored under the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<a href="https://gsoc-block-based-circuit-design-site.netlify.app/">![Block Based Circuit Designer](https://ninadjangle.tech/images/gsoc-final-blog/image1.png)</a>
 
-### `npm test`
+## Motivation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Block-Based Circuit Design introduces learners to circuit design at a young age. The current options available for circuit design like Verilog and VHDL are syntactically hard for the younger learners to grasp. TL-Verilog, a variation of Verilog helps eliminate this complexity from the languages while preserving its advantages. 
 
-### `npm run build`
+Block Based Circuit Design takes it a step further. By Gamification of the learning and working process, it makes learning and tinkering with Circuit design fun. Further tearing down barriers to entry to the field.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## What We Have Achieved This Summer
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Block Based Circuit Designer** has been Developed and Deployed from ground up. The solution is available to the users at [website-url](https://gsoc-block-based-circuit-design-site.netlify.app/").
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+|**Proposed Deliverables**                                             |**Status**   | 
+|----------------------------------------------------------------------|------------:|
+| Designing the required tool list for the interface.                  | Delivered   |
+| Create a working custom Language Generator for TL-Verilog on Blocky. | Delivered   |
+| Adding instructions to the language generator to handle more tasks   | Delivered   | 
+| Exploring and possibly implementing big string text inputs in Blocky | Delivered   |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### The Technologies used in the Project include:
+- Blockly
+- TL-Verilog
+- React
+- Chakra-UI
+- Core JavaScript and JSON
+- netlify for deployment
+- MakerchipIDE
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Code Structure
 
-## Learn More
+```
+├── App.css
+├── App.js
+├── components
+│   ├── BlocklyComponent
+│   │   ├── BlocklyComponent.jsx
+│   │   └── index.js
+│   ├── Panel.js
+│   └── toolbox.js
+├── generator
+│   ├── Components.js
+│   ├── Expressions.js
+│   ├── fileStructure.js
+│   ├── m4Modules.js
+│   ├── MultiPurpose.js
+│   ├── Printing.js
+│   ├── Procedures.js
+│   ├── Scopes.js
+│   ├── Sequential.js
+│   ├── Signals.js
+│   ├── Ternary.js
+│   └── tl_verilog.js
+└── index.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The Code went through a lot of rounds and I took to recode everything again from scratch post the 1st evaluation. This was done to deliver the most efficient solution for the product. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+In our src we have :
+```
+├── components
+├── generator
+├── App.css
+├── App.js
+└── index.js
+```
 
-### Code Splitting
+Using React, we have taken benefit of the states and props to maintain the memory of blocks during operation. All states can be viewed in App.js as they have been lifted up and are passed to the components as required.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+State Flow diagram
+```
+App.js
+├──  BlocklyComponent.jsx
+├──  Panel.js
+```
 
-### Analyzing the Bundle Size
+The **components folder** holds the code for the three main sections of our solution:
+  - Toolbox (Leftmost)
+  - Blockly Workspace(middle)
+  - Panel (rightmost)
+  -
+These folder contain the necessary logic to render and handle any changes made by the user on these specific areas. These can be thought of as canvases for their individual zones
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The **generator folder** carries the description and logic for all the blocks that the Designer is equipped with. 
 
-### Making a Progressive Web App
+The *tl-verilog.js* file defines our custom generator and the rules attached with it :
+- Precedence of commands
+- index of each block
+- variables database storage
+- scrubbing of multiple block codes together
+All of these are bundled together in tl-verilog.js file which helps us define our language specification for TL-Verilog
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Daily Tracker
 
-### Deployment
+|     Start Date  |          Updates                                    |
+|-----------------|:---------------------------------------------------:|
+|  [ 2020-08-19 ] |[Week 12](https://ninadjangle.tech/pages/gsoc/wk12)  |
+|  [ 2020-08-12 ] |[Week 11](https://ninadjangle.tech/pages/gsoc/wk11)  | 
+|  [ 2020-08-5  ] |[Week 10](https://ninadjangle.tech/pages/gsoc/wk10)  |
+|  [ 2020-07-29 ] |[Week 9](https://ninadjangle.tech/pages/gsoc/wk9)    | 
+|  [ 2020-07-22 ] |[Week 8](https://ninadjangle.tech/pages/gsoc/wk8)    | 
+|  [ 2020-07-15 ] |[Week 7](https://ninadjangle.tech/pages/gsoc/wk7)    | 
+|  [ 2020-07-8  ] |[Week 6](https://ninadjangle.tech/pages/gsoc/wk6)    | 
+|  [ 2020-07-1  ] |[Week 5](https://ninadjangle.tech/pages/gsoc/wk5)    | 
+|  [ 2020-06-24 ] |[Week 4](https://ninadjangle.tech/pages/gsoc/wk4)    | 
+|  [ 2020-06-18 ] |[Week 3](https://ninadjangle.tech/pages/gsoc/wk3)    | 
+|  [ 2020-06-11 ] |[Week 2](https://ninadjangle.tech/pages/gsoc/wk2)    | 
+|  [ 2020-06-4  ] |[Week 1](https://ninadjangle.tech/pages/gsoc/wk1)    |
+|  [ 2020-05-27 ] |[Week 0.2](https://ninadjangle.tech/pages/gsoc/wk0_2)|
+|  [ 2020-05-20 ] |[Week 0.1](https://ninadjangle.tech/pages/gsoc/wk0_1)|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Work Done
+
+- [Github Repository](https://github.com/ninja3011/Block_Based_Circuit_Design)
+- [Website](https://gsoc-block-based-circuit-design-site.netlify.app/)
+- [Daily Tracker](https://ninadjangle.tech/gsoc-2021) 
+
+
+
