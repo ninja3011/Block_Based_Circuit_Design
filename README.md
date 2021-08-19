@@ -129,5 +129,10 @@ All of these are bundled together in tl-verilog.js file which helps us define ou
 - [Website](https://gsoc-block-based-circuit-design-site.netlify.app/)
 - [Daily Tracker](https://ninadjangle.tech/gsoc-2021) 
 
+## Contributers
 
+- Dr. Gayatri Mehta
+- Steve Hoover
+- Adam Ratzman
+- Ninad Jangle
 
