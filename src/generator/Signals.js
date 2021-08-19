@@ -5,7 +5,7 @@ const RANGE_MIN = 0;
 const RANGE_MAX = 3;
 
 const sig_text = (sig_inputs) => {
-  if (sig_inputs == 2) return "type";
+  if (sig_inputs == 2) return "vector";
   else if (sig_inputs == 3) return "retiming";
   else return "misc.";
 };
@@ -76,7 +76,7 @@ Blockly.Blocks["variables_get"] = {
           }
         )
       );
-      this.getInput("in1").appendField("vector");
+      this.getInput("in1").appendField("type");
     } else {
       this.appendValueInput("in1")
         .appendField(
@@ -101,7 +101,7 @@ Blockly.Blocks["variables_get"] = {
             }
           )
         );
-      this.getInput("in1").appendField("vector");
+      this.getInput("in1").appendField("type");
     }
 
     var i = 2;
@@ -172,7 +172,7 @@ tlVerilogGenerator["variables_get"] = (block) => {
     code =  text_signal;
   }
   else{
-    code =  in2_block + in3_block +text_signal + in1_block;
+    code =  in1_block + in3_block +text_signal + in2_block;
   }
    
   console.log(code)
