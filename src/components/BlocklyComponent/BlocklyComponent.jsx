@@ -8,16 +8,15 @@ import {  Box} from "@chakra-ui/react";
 Blockly.setLocale(locale);
 
 class BlocklyComponent extends React.Component {
-
-  
-
+s
   constructor(props) {
     super(props);
-    this.blocklyDiv = React.createRef();
+    this.blocklyDiv = this.props.blocklyDivRef;
     this.toolbox = React.createRef();
   }
 
   componentDidMount() {
+    console.log(this.toolbox)
     const { initialXml, children, ...rest } = this.props;
     this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
       toolbox: this.toolbox.current,
