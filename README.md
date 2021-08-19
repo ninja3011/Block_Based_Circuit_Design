@@ -88,7 +88,7 @@ The **components folder** holds the code for the three main sections of our solu
   - Toolbox (Leftmost)
   - Blockly Workspace(middle)
   - Panel (rightmost)
-  -
+  
 These folder contain the necessary logic to render and handle any changes made by the user on these specific areas. These can be thought of as canvases for their individual zones
 
 The **generator folder** carries the description and logic for all the blocks that the Designer is equipped with. 
