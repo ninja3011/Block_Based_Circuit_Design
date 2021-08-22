@@ -8,17 +8,30 @@ This summer I mentored under the FOSSi Foundation to develop a Block Based Circu
 
 <a href="https://gsoc-block-based-circuit-design-site.netlify.app/">![Block Based Circuit Designer](./assets/pythagorean.png)</a>
 
+### How to Run
+
+1. **To Design Circuits** 
+   * Go to [Block Based Circuit Design](https://gsoc-block-based-circuit-design-site.netlify.app/") and start designing!
+2. **To contribute to Block Based Circuit Design Development**
+   
+``` 
+   git clone https://github.com/ninja3011/Block_Based_Circuit_Design.git
+   cd Block_Based_Circuit_Design/src
+   npm start
+```
+
+
 ## Motivation
 
 Block-Based Circuit Design introduces learners to circuit design at a young age. The current options available for circuit design like Verilog and VHDL are syntactically hard for the younger learners to grasp. TL-Verilog, a variation of Verilog helps eliminate this complexity from the languages while preserving its advantages. 
 
 Block Based Circuit Design takes it a step further. By Gamification of the learning and working process, it makes learning and tinkering with Circuit design fun. Further tearing down barriers to entry to the field.
 
-## What We Have Achieved This Summer
+### The Power Of Block Based Circuit Design
 
-**Block Based Circuit Designer** has been Developed and Deployed from ground up. The solution is available to the users at [website-url](https://gsoc-block-based-circuit-design-site.netlify.app/").
+With the Aid of Block Based Circuit Design, we finally have a tool for nurturing the circuit designer inside of younger learners. For a long time, the community lacked a good solution for introducing and catching the interest of circuit design due to lack of appropriate tools. With this solution, **anyone can design circuits**. The codebase implements a TL-Verilog Generator which converts the blocks to a TL-Verilog code. This code can also be further converted to Verilog in [MakerchipIDE](https://www.makerchip.com/sandbox/#) using sandbox. 
 
-### Demo
+## Demo
 ![Pythagorean Tutorial Demo](./assets/Pythagorean.gif)
 
 |**Proposed Deliverables**                                             |**Status**   | 
@@ -38,6 +51,21 @@ Block Based Circuit Design takes it a step further. By Gamification of the learn
 - Core JavaScript and JSON
 - netlify for deployment
 - MakerchipIDE
+
+### Why Blockly?
+
+Blockly has many advantages which made it an ideal choice for our solution: 
+  * Open Source, I was able to peek into the source code for the 5 basic languages and extrapolate how to go about developing one for TL-Verilog.
+  * Can handle long text, Blocks in blockly have a capability to handle multiline texts with formatting.
+  * Extensible, Blockly is meant to be added on to. They have made it really simple to add and remove functionalities from the library.
+  * Purely based in JavaScript, so no conversion complications
+  * 100% client side. It has no server side dependencies.
+  * Compatible with all major browsers: Chrome, Firefox, Safari, Opera, and IE.
+  * Highly customizable and extensible.
+
+### The TL-Verilog Revolution
+
+TL-Verilog has been developed by addressing the complaints a lot of circuit designers in the industry have voiced for a long time. TL-verilog simplification is akin to that python brought in Software Development. The industry standard languages of Verilog and VHDL, though powerful, interact with the hardware at a very low level and make the code unnecessarily complex. TL-Verilog eliminates the archaic aspects of theses languages while improving on their functionalities. The intuitive simplicity of TL-Verilog along with the availability of tools which convert it to Verilog made it an ideal choice
 
 ### Code Structure
 
