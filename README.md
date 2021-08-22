@@ -2,7 +2,7 @@
 
 # Block Based Circuit Design
 
-This summer I was mentored by the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
+This summer I was mentored by the FOSSi Foundation to develop a Block Based Circuit Design solution using blockly by Google. I am excited to introduce to you the result! 
 
 
 
@@ -23,13 +23,13 @@ This summer I was mentored by the FOSSi Foundation to develop a Block Based Circ
 
 ## Motivation
 
-Block-Based Circuit Design introduces learners to circuit design at a young age. The current options available for circuit design like Verilog and VHDL are syntactically hard for the younger learners to grasp. TL-Verilog, a variation of Verilog helps eliminate this complexity from the languages while preserving its advantages. 
+Block-Based Circuit Design introduces learners to circuit design early in their education. The current options available for circuit design like Verilog and VHDL are syntactically cumbersome for the younger learners to grasp. TL-Verilog, a variation of Verilog helps eliminate this complexity from Verilog while preserving its advantages. 
 
-Block Based Circuit Design takes it a step further. By Gamification of the learning and working process, it makes learning and tinkering with circuit design fun, further tearing down barriers to entry to the field.
+Block Based Circuit Design takes it a step further. By the gamification of the process, it makes learning and tinkering with circuit design fun, further tearing down the barriers to entry.
 
 ### The Power Of Block Based Circuit Design
 
-With the aid of Block Based Circuit Design, we finally have a tool for nurturing the circuit designer inside of younger learners. For a long time, the community lacked a good solution for introducing and catching the interest of circuit design due to lack of appropriate tools. With this solution, **anyone can design circuits**. The codebase implements a TL-Verilog Generator which converts the blocks to a TL-Verilog code. This code can also be further converted to Verilog in [MakerchipIDE](https://www.makerchip.com/sandbox/#) using sandbox. 
+With the aid of Block Based Circuit Design, we finally have a tool for nurturing the circuit designer skill of younger learners. For a long time, the community lacked a solution for introducing and catching the interest for circuit design due to the lack of appropriate tools. With this solution, **anyone can design circuits**. The codebase implements a TL-Verilog Generator which converts the blocks to TL-Verilog code. This code can also be further converted to Verilog in [MakerchipIDE](https://www.makerchip.com/sandbox/#) using sandbox. 
 
 ## Demo
 ![Pythagorean Tutorial Demo](./assets/Pythagorean.gif)
@@ -56,16 +56,16 @@ With the aid of Block Based Circuit Design, we finally have a tool for nurturing
 
 Blockly has many advantages which made it an ideal choice for our solution: 
   * Open Source, I was able to peek into the source code for the 5 basic languages and extrapolate how to go about developing one for TL-Verilog.
-  * Can handle long text, Blocks in blockly have a capability to handle multiline texts with formatting.
-  * Extensible, Blockly is meant to be added on to. They have made it really simple to add and remove functionalities from the library.
+  * Can handle long text, Blocks in blockly can handle multiline texts with formatting.
+  * Extensible, Blockly is meant to be added on to. They have made it simple to add and remove functionalities from the library.
   * Purely based in JavaScript, so no conversion complications
-  * 100% client side. It has no server side dependencies.
+  * 100% client-side. It has no server-side dependencies.
   * Compatible with all major browsers: Chrome, Firefox, Safari, Opera, and IE.
   * Highly customizable and extensible.
 
 ### The TL-Verilog Revolution
 
-TL-Verilog has been developed by addressing the complaints a lot of circuit designers in the industry have voiced for a long time. TL-verilog simplification is akin to that python brought in Software Development. The industry standard languages of Verilog and VHDL, though powerful, interact with the hardware at a very low level and make the code unnecessarily complex. TL-Verilog eliminates the archaic aspects of theses languages while improving on their functionalities. The intuitive simplicity of TL-Verilog along with the availability of tools which convert it to Verilog made it an ideal choice
+TL-Verilog has been developed by addressing the complaints a lot of circuit designers in the industry have voiced for a long time. TL-Verilog simplification is akin to that python brought in Software Development. The industry-standard languages of Verilog and VHDL, though powerful, interact with the hardware at a very low level and make the code unnecessarily complex. TL-Verilog eliminates the archaic aspects of these languages while improving on their functionalities. The intuitive simplicity of TL-Verilog along with the availability of tools that convert it to Verilog made it an ideal choice
 
 ### Code Structure
 
@@ -119,7 +119,7 @@ The **components folder** holds the code for the three main sections of our solu
   - Blockly Workspace(middle)
   - Panel (rightmost)
   
-These folder contain the necessary logic to render and handle any changes made by the user on these specific areas. These can be thought of as canvases for their individual zones
+This folder contains the necessary logic to render and handle any changes made by the user in these specific areas. These can be thought of as canvases for their zones
 
 The **generator folder** carries the description and logic for all the blocks that the Designer is equipped with. 
 
@@ -159,7 +159,7 @@ All of these are bundled together in tl-verilog.js file which helps us define ou
 - [Website](https://gsoc-block-based-circuit-design-site.netlify.app/)
 - [Daily Tracker](https://ninadjangle.tech/gsoc-2021) 
 
-## Contributers
+## Contributors
 
 - Dr. Gayatri Mehta
 - Steve Hoover
