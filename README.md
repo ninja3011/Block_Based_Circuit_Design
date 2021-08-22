@@ -2,7 +2,7 @@
 
 # Block Based Circuit Design
 
-This summer I was mentored by the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
+This summer I was mentored under the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
 
 
 
@@ -25,11 +25,11 @@ This summer I was mentored by the FOSSi Foundation to develop a Block Based Circ
 
 Block-Based Circuit Design introduces learners to circuit design at a young age. The current options available for circuit design like Verilog and VHDL are syntactically hard for the younger learners to grasp. TL-Verilog, a variation of Verilog helps eliminate this complexity from the languages while preserving its advantages. 
 
-Block Based Circuit Design takes it a step further. By Gamification of the learning and working process, it makes learning and tinkering with Circuit design fun. Further tearing down barriers to entry to the field.
+Block Based Circuit Design takes it a step further. By Gamification of the learning and working process, it makes learning and tinkering with circuit design fun, further tearing down barriers to entry to the field.
 
 ### The Power Of Block Based Circuit Design
 
-With the Aid of Block Based Circuit Design, we finally have a tool for nurturing the circuit designer inside of younger learners. For a long time, the community lacked a good solution for introducing and catching the interest of circuit design due to lack of appropriate tools. With this solution, **anyone can design circuits**. The codebase implements a TL-Verilog Generator which converts the blocks to a TL-Verilog code. This code can also be further converted to Verilog in [MakerchipIDE](https://www.makerchip.com/sandbox/#) using sandbox. 
+With the aid of Block Based Circuit Design, we finally have a tool for nurturing the circuit designer inside of younger learners. For a long time, the community lacked a good solution for introducing and catching the interest of circuit design due to lack of appropriate tools. With this solution, **anyone can design circuits**. The codebase implements a TL-Verilog Generator which converts the blocks to a TL-Verilog code. This code can also be further converted to Verilog in [MakerchipIDE](https://www.makerchip.com/sandbox/#) using sandbox. 
 
 ## Demo
 ![Pythagorean Tutorial Demo](./assets/Pythagorean.gif)
