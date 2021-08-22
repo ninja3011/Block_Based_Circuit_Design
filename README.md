@@ -2,7 +2,7 @@
 
 # Block Based Circuit Design
 
-This summer I was mentored under the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
+This summer I was mentored by the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
 
 
 
