@@ -6,7 +6,7 @@ This summer I mentored under the FOSSi Foundation to develop a Block Based Circu
 
 
 
-<a href="https://gsoc-block-based-circuit-design-site.netlify.app/">![Block Based Circuit Designer](https://ninadjangle.tech/images/gsoc-final-blog/image1.png)</a>
+<a href="https://gsoc-block-based-circuit-design-site.netlify.app/">![Block Based Circuit Designer](./assets/pythagorean.png)</a>
 
 ## Motivation
 
@@ -18,6 +18,8 @@ Block Based Circuit Design takes it a step further. By Gamification of the learn
 
 **Block Based Circuit Designer** has been Developed and Deployed from ground up. The solution is available to the users at [website-url](https://gsoc-block-based-circuit-design-site.netlify.app/").
 
+### Demo
+![Pythagorean Tutorial Demo](./assets/Pythagorean.gif)
 
 |**Proposed Deliverables**                                             |**Status**   | 
 |----------------------------------------------------------------------|------------:|
