@@ -2,7 +2,7 @@
 
 # Block Based Circuit Design
 
-This summer I mentored under the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
+This summer I was mentored under the FOSSi Foundation to develop a Block Based Circuit Design Solution using blockly by google. I am excited to introduce to you the result! 
 
 
 
@@ -11,7 +11,7 @@ This summer I mentored under the FOSSi Foundation to develop a Block Based Circu
 ### How to Run
 
 1. **To Design Circuits** 
-   * Go to [Block Based Circuit Design](https://gsoc-block-based-circuit-design-site.netlify.app/") and start designing!
+   * Go to [Block Based Circuit Design](https://gsoc-block-based-circuit-design-site.netlify.app/) and start designing!
 2. **To contribute to Block Based Circuit Design Development**
    
 ``` 
