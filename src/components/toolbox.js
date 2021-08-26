@@ -31,6 +31,9 @@ function Toolbox() {
             <Block type="lists_create_with_TLV">
         <mutation items="0"></mutation>
         </Block>
+        <Block type="lists_create_with_TLV_comma">
+        <mutation items="0"></mutation>
+        </Block>
           </Category>
           <Category name="Logic" colour="290">
             <Category name="Expressions">
@@ -54,6 +57,8 @@ function Toolbox() {
             <Category name="ternary">
               <Block type="ternary_shell" />
               <Block type="ternary_fields" />
+              <Block type="ternary_simple" />
+
             </Category>
           </Category>
           <Category name="TLV" colour="160">
@@ -451,3 +456,5 @@ function Toolbox() {
 }
 
 export default Toolbox
+
+

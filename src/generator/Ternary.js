@@ -68,16 +68,20 @@ Blockly.Blocks['ternary_shell'] = {
               "name": "option1",
               "options": [
                 [
-                  "?",
-                  "?"
+                  '?',
+                  '?'
                 ],
                 [
                   ";",
                   ";"
                 ],
                 [
-                  "option",
-                  "OPTIONNAME"
+                  ":",
+                  ":"
+                ],
+                [
+                  "",
+                  ""
                 ]
               ]
             },
@@ -100,6 +104,10 @@ Blockly.Blocks['ternary_shell'] = {
                 [
                   "",
                   ""
+                ],
+                [
+                  '?',
+                  '?'
                 ]
               ]
             }
@@ -124,3 +132,53 @@ Blockly.Blocks['ternary_shell'] = {
      const code =  '        '+ value_condition+' '+dropdown_option1+' '+ value_sig1 +' '+ dropdown_option2  ;
     return code;
   };
+  
+  Blockly.Blocks['ternary_simple'] = {
+    init: function() {
+      this.jsonInit(
+  {
+    "type": "logic_ternary",
+    "message0": "%{BKY_LOGIC_TERNARY_CONDITION} %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "IF",
+        "check": "Boolean"
+      }
+    ],
+    "message1": "%{BKY_LOGIC_TERNARY_IF_TRUE} %1",
+    "args1": [
+      {
+        "type": "input_value",
+        "name": "THEN"
+      }
+    ],
+    "message2": "%{BKY_LOGIC_TERNARY_IF_FALSE} %1",
+    "args2": [
+      {
+        "type": "input_value",
+        "name": "ELSE"
+      }
+    ],
+    "output": null,
+    "style": "logic_blocks",
+    "tooltip": "%{BKY_LOGIC_TERNARY_TOOLTIP}",
+    "helpUrl": "%{BKY_LOGIC_TERNARY_HELPURL}",
+    "extensions": ["logic_ternary"]
+  }
+);
+    }
+  };
+
+   tlVerilogGenerator['ternary_simple'] = function(block) {
+    // Ternary operator.
+    var value_if =  tlVerilogGenerator.valueToCode(block, 'IF',
+         tlVerilogGenerator. PRECEDENCE) || 'false';
+    var value_then =  tlVerilogGenerator.valueToCode(block, 'THEN',
+         tlVerilogGenerator. PRECEDENCE) || 'null';
+    var value_else =  tlVerilogGenerator.valueToCode(block, 'ELSE',
+         tlVerilogGenerator. PRECEDENCE) || 'null';
+    var code = value_if + ' ? ' + value_then + ' : ' + value_else;
+    return [code,  tlVerilogGenerator. PRECEDENCE];
+  };
+  

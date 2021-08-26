@@ -158,6 +158,10 @@ Blockly.Blocks["logical_operator"] = {
             ["&&", "&&"],
             ["||", "||"],
             ["^", "^"],
+            [">>",">>"],
+            ["<<","<<"],
+            ["&","&"],
+            ["|","|"],
           ],
         },
         {
@@ -180,7 +184,7 @@ tlVerilogGenerator["logical_operator"] = (block) => {
     "sig1",
     tlVerilogGenerator.PRECEDENCE
   );
-  const dropdown_name = block.getFieldValue("type");
+  const dropdown_name = block.getFieldValue("NAME");
   const value_sig2 = tlVerilogGenerator.valueToCode(
     block,
     "sig2",
@@ -212,6 +216,7 @@ Blockly.Blocks["comparison_operator"] = {
             ["<", "<"],
             [">=", ">="],
             ["<=", "<="],
+
           ],
         },
         {
