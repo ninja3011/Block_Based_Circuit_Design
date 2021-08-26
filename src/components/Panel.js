@@ -133,6 +133,7 @@ const Panel = (props) => {
         document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
       };
+      
       const handleOpenInMakerchipButtonClicked = () => {
         {
           setMakerchipOpening(true)

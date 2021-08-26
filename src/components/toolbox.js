@@ -28,6 +28,9 @@ function Toolbox() {
             <Block type="parenthesis" />
             <Block type="semicolon" />
             <Block type="sig_type" />
+            <Block type="lists_create_with_TLV">
+        <mutation items="0"></mutation>
+        </Block>
           </Category>
           <Category name="Logic" colour="290">
             <Category name="Expressions">
