@@ -5,9 +5,8 @@ const RANGE_MIN = 0;
 const RANGE_MAX = 3;
 
 const sig_text = (sig_inputs) => {
-  if (sig_inputs == 2) return "vector";
-  else if (sig_inputs == 3) return "retiming";
-  else return "misc.";
+  if (sig_inputs == 2) return ">";
+  else if (sig_inputs == 3) return "<";
 };
 
 Blockly.Blocks["variables_get"] = {
@@ -76,7 +75,7 @@ Blockly.Blocks["variables_get"] = {
           }
         )
       );
-      this.getInput("in1").appendField("type");
+      this.getInput("in1").appendField("<");
     } else {
       this.appendValueInput("in1")
         .appendField(
@@ -101,7 +100,7 @@ Blockly.Blocks["variables_get"] = {
             }
           )
         );
-      this.getInput("in1").appendField("type");
+      this.getInput("in1").appendField("<");
     }
 
     var i = 2;
