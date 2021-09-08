@@ -134,22 +134,23 @@ All of these are bundled together in tl-verilog.js file which helps us define ou
 
 ## Daily Tracker
 
-|     Start Date  |          Updates                                    |
-|-----------------|:---------------------------------------------------:|
-|  [ 2020-08-19 ] |[Week 12](https://ninadjangle.tech/pages/gsoc/wk12)  |
-|  [ 2020-08-12 ] |[Week 11](https://ninadjangle.tech/pages/gsoc/wk11)  | 
-|  [ 2020-08-5  ] |[Week 10](https://ninadjangle.tech/pages/gsoc/wk10)  |
-|  [ 2020-07-29 ] |[Week 9](https://ninadjangle.tech/pages/gsoc/wk9)    | 
-|  [ 2020-07-22 ] |[Week 8](https://ninadjangle.tech/pages/gsoc/wk8)    | 
-|  [ 2020-07-15 ] |[Week 7](https://ninadjangle.tech/pages/gsoc/wk7)    | 
-|  [ 2020-07-8  ] |[Week 6](https://ninadjangle.tech/pages/gsoc/wk6)    | 
-|  [ 2020-07-1  ] |[Week 5](https://ninadjangle.tech/pages/gsoc/wk5)    | 
-|  [ 2020-06-24 ] |[Week 4](https://ninadjangle.tech/pages/gsoc/wk4)    | 
-|  [ 2020-06-18 ] |[Week 3](https://ninadjangle.tech/pages/gsoc/wk3)    | 
-|  [ 2020-06-11 ] |[Week 2](https://ninadjangle.tech/pages/gsoc/wk2)    | 
-|  [ 2020-06-4  ] |[Week 1](https://ninadjangle.tech/pages/gsoc/wk1)    |
-|  [ 2020-05-27 ] |[Week 0.2](https://ninadjangle.tech/pages/gsoc/wk0_2)|
-|  [ 2020-05-20 ] |[Week 0.1](https://ninadjangle.tech/pages/gsoc/wk0_1)|
+|     Start Date  |          Updates                                                                  |
+|-----------------|:---------------------------------------------------------------------------------:|
+|  [ 2020-08-26 ] |[Week 12](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk13.md)  |
+|  [ 2020-08-19 ] |[Week 12](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk12.md)  |
+|  [ 2020-08-12 ] |[Week 11](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk11.md)  | 
+|  [ 2020-08-5  ] |[Week 10](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk10.md)  |
+|  [ 2020-07-29 ] |[Week 9](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk9.md)    | 
+|  [ 2020-07-22 ] |[Week 8](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk8.md)    | 
+|  [ 2020-07-15 ] |[Week 7](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk7.md)    | 
+|  [ 2020-07-8  ] |[Week 6](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk6.md)    | 
+|  [ 2020-07-1  ] |[Week 5](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk5.md)    | 
+|  [ 2020-06-24 ] |[Week 4](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk4.md)    | 
+|  [ 2020-06-18 ] |[Week 3](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk3.md)    | 
+|  [ 2020-06-11 ] |[Week 2](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk2.md)    | 
+|  [ 2020-06-4  ] |[Week 1](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk1.md)    |
+|  [ 2020-05-27 ] |[Week 0.2](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk0_2.md)|
+|  [ 2020-05-20 ] |[Week 0.1](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk0_1.md)|
 
 
 
