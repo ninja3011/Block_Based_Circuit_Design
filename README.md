@@ -136,7 +136,7 @@ All of these are bundled together in tl-verilog.js file which helps us define ou
 
 |     Start Date  |          Updates                                                                  |
 |-----------------|:---------------------------------------------------------------------------------:|
-|  [ 2020-08-26 ] |[Week 12](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk13.md)  |
+|  [ 2020-08-26 ] |[Week 13](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk13.md)  |
 |  [ 2020-08-19 ] |[Week 12](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk12.md)  |
 |  [ 2020-08-12 ] |[Week 11](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk11.md)  | 
 |  [ 2020-08-5  ] |[Week 10](https://github.com/ninja3011/Ninad-Jangle/blob/main/pages/gsoc/wk10.md)  |
