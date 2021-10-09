@@ -169,3 +169,6 @@ All of these are bundled together in tl-verilog.js file which helps us define ou
 - Adam Ratzman
 - Ninad Jangle
 
+## License
+
+Block Based Circuit Design Project is under the [BSD 3-Clause License](./LICENSE.md)
